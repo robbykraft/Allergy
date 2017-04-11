@@ -10,7 +10,17 @@ import UIKit
 
 class UIRadialChart: UIView {
 	
-	var summary:String?
+	var summary:String?{
+		didSet{
+			if let s = summary{
+				label.text = s
+			}
+			self.refresh()
+		}
+	}
+	
+	// private
+	let label = UILabel()
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -25,35 +35,23 @@ class UIRadialChart: UIView {
 	}
 	
 	func initUI() {
-		refresh()
+		let radius:CGFloat = self.frame.width*0.33
+
+		let layer = CAShapeLayer()
+		let circle = UIBezierPath.init(arcCenter: CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5), radius: radius, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+		layer.path = circle.cgPath
+		layer.fillColor = Style.shared.whiteSmoke.cgColor
+		self.layer.addSublayer(layer)
+		
+		label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P64)
+		label.textColor = UIColor.black
+		self.addSubview(label)
 	}
 	
 	func refresh(){
-		
-		self.layer.sublayers = []
-		
-		let count:CGFloat = 15
-		let lineWidth:CGFloat = 15
-		let spacer:CGFloat = 2
-		
-		let padW:CGFloat = 0.5 * (self.frame.size.width - CGFloat((count-1) * (lineWidth+spacer)))
-		let padH:CGFloat = 20 + lineWidth
-		
-		for i in 0..<Int(count){
-			let layer = CAShapeLayer()
-			let bz = UIBezierPath()
-			let start = CGPoint.init(x: padW + CGFloat(i)*(lineWidth+spacer), y: self.frame.size.height-padH)
-			bz.move(to: start)
-			print(String(describing: start.x) + " " + String(describing: start.y))
-			bz.addLine(to: CGPoint.init(x: start.x, y: padH))
-			layer.path = bz.cgPath
-			layer.strokeColor = Style.shared.whiteSmoke.cgColor
-			layer.lineWidth = lineWidth
-			layer.lineCap = kCALineCapRound
-			self.layer.addSublayer(layer)
-		}
+		label.sizeToFit()
+		label.center = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5)
 	}
-	
 	
 
     /*

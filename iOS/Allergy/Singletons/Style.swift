@@ -31,7 +31,13 @@ class Style {
 	let gray = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
 	let darkGray = UIColor(red:0.22, green:0.22, blue:0.22, alpha:1.00)
 	let whiteSmoke = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
+	let orange = UIColor(red: 255/255.0, green: 149/255.0, blue: 0, alpha: 1.0)
+	let blue = UIColor(red: 0, green: 122/255.0, blue: 1.0, alpha: 1.0)
+	let green = UIColor(red: 76/255.0, green: 217/255.0, blue: 100/255.0, alpha: 1.0)
+	let softBlue = UIColor(red:0.20, green:0.67, blue:0.86, alpha:1.00)
+	let alienGreen = UIColor(red:0.30, green:0.85, blue:0.39, alpha:1.00)
 	
+	var P64:CGFloat = 64
 	var P40:CGFloat = 40
 	var P30:CGFloat = 30
 	var P24:CGFloat = 24
@@ -43,6 +49,7 @@ class Style {
 	
 	fileprivate init() {
 		if(IS_IPAD){
+			P64 = 92
 			P40 = 60
 			P30 = 50
 			P24 = 42
@@ -50,7 +57,8 @@ class Style {
 			P15 = 26
 			P12 = 24
 		}
-		styleUIAppearance()
+		
+//		styleUIAppearance()
 	}
 	
 	func heading1Attributes() -> [String:NSObject] {

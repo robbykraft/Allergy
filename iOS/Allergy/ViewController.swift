@@ -11,9 +11,14 @@ import Firebase
 
 class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate {
 	
+	let weekdayStrings = ["S", "M", "T", "W", "T", "F", "S"]
+	
+	var radialChart = UIRadialChart()
+	var barChart = UIBarChartView()
+	
 	var data:[Int] = []{
 		didSet{
-			self.graph.reloadGraph()
+//			self.graph.reloadGraph()
 		}
 	}
 	var samples:[Sample] = []{
@@ -35,32 +40,54 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
 		return CGFloat(index)
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		UIApplication.shared.statusBarStyle = .lightContent
+	}
 	
-	let bigLabel = UILabel()
-	let graph = BEMSimpleLineGraphView()
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		self.view.backgroundColor = UIColor.init(white: 1.0, alpha: 1.0)
-		self.view.backgroundColor = UIColor.appleBlue()
-		bigLabel.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width*0.33)
-		bigLabel.font = UIFont.systemFont(ofSize: 40)
-		bigLabel.textColor = UIColor.black
-		bigLabel.textAlignment = .center
-		self.view.addSubview(bigLabel)
+		self.view.backgroundColor = Style.shared.whiteSmoke
 		
-		graph.dataSource = self;
-		graph.delegate = self;
-		graph.enableBezierCurve = true
-		graph.frame = CGRect.init(x: 0, y: 200, width: self.view.frame.size.width, height: self.view.frame.size.height - 400)
-		self.view.addSubview(graph)
+		Allergy.shared.loadRecentData(numberOfDays: 1) { (sample) in
+			self.radialChart.summary = sample.summary
+		}
 		
-//		Allergy.shared.loadRecentData(numberOfDays: 5) { (sample) in
-//			self.samples.append(sample)
-//		}
+		Allergy.shared.loadRecentData(numberOfDays: 5) { (sample) in
+			self.samples.append(sample)
+			// build bar chart again
+			var barValues:[Float] = []
+			for sample in self.samples{
+				if let mold = sample.molds{
+					barValues.append( Float(mold) / 3000.0 )
+				}
+			}
+			self.barChart.values = barValues
+			// set bar labels
+			var dateStrings:[String] = []
+			for sample in self.samples{
+				if let date = sample.date{
+					let weekday = NSCalendar.current.component(.weekday, from: date)
+					dateStrings.append(self.weekdayStrings[weekday])
+				}
+			}
+			self.barChart.labels = dateStrings
+		}
 		
-		let chart = UIChartView.init(frame: CGRect.init(x: 0, y: self.view.frame.size.height - 200, width: self.view.frame.size.width, height: 200))
-		self.view.addSubview(chart)
+		let barChartTop:CGFloat = self.view.frame.size.height - 200
+		let radius:CGFloat = self.view.frame.size.height * 1.25
+		
+		let layer = CAShapeLayer()
+		let circle = UIBezierPath.init(arcCenter: CGPoint.init(x: self.view.center.x, y: barChartTop - radius), radius: radius, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+		layer.path = circle.cgPath
+		layer.fillColor = Style.shared.blue.cgColor
+		self.view.layer.addSublayer(layer)
+		
+		radialChart = UIRadialChart.init(frame: CGRect.init(x: 0, y: 10, width: self.view.frame.size.width, height: self.view.frame.size.width))
+		self.view.addSubview(radialChart)
+		
+		barChart = UIBarChartView.init(frame: CGRect.init(x: 0, y: barChartTop, width: self.view.frame.size.width, height: 200))
+		self.view.addSubview(barChart)
 	}
 
 	override func didReceiveMemoryWarning() {

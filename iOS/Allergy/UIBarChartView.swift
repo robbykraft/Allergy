@@ -8,9 +8,23 @@
 
 import UIKit
 
-class UIChartView: UIView {
+class UIBarChartView: UIView {
 	
-	var values:[Float] = []
+	var values:[Float] = []{
+		didSet{
+			redrawLayer()
+		}
+	}
+	var labels:[String] = []{
+		didSet{
+			for i in 0..<labels.count{
+				if i < uiLabels.count{
+					uiLabels[i].text = labels[i]
+				}
+			}
+			layoutSubviews()
+		}
+	}
 	
 	var uiLabels:[UILabel] = []
 	
@@ -34,7 +48,7 @@ class UIChartView: UIView {
 	func initUI() {
 		
 		// UILabels
-		for i in 0..<Int(count){
+		for _ in 0..<Int(count){
 			let label = UILabel()
 			label.font = UIFont.init(name: SYSTEM_FONT, size: Style.shared.P12)
 			label.textColor = UIColor.black
@@ -46,31 +60,41 @@ class UIChartView: UIView {
 		self.layer.addSublayer(barLayer)
 
 //		self.backgroundColor = UIColor.lightGray
-		redraw()
+		redrawLayer()
+		layoutSubviews()
 	}
 	
-	func redraw(){
+	override func layoutSubviews(){
+		super.layoutSubviews()
+		let lineWidth:CGFloat = 15
+		let spacer:CGFloat = 2
+		let padLabel:CGFloat = 20
+		let padW:CGFloat = 0.5 * (self.frame.size.width - CGFloat((count-1) * (lineWidth+spacer)))
+		let padH:CGFloat = 20 + lineWidth
+
+		// uilabels
+		for i in 0..<Int(count){
+			if(uiLabels.count > i){
+				let xPos:CGFloat = padW + CGFloat(count-1-CGFloat(i)) * (lineWidth+spacer)
+				uiLabels[i].sizeToFit()
+				uiLabels[i].center = CGPoint.init(x: xPos, y: self.frame.size.height-padH)
+			}
+		}
+	}
+	
+	func redrawLayer(){
 
 		barLayer.sublayers = []
 		watermarkLayer.sublayers = []
 		
 		let lineWidth:CGFloat = 15
 		let spacer:CGFloat = 2
-
+		let padLabel:CGFloat = 20
 		let padW:CGFloat = 0.5 * (self.frame.size.width - CGFloat((count-1) * (lineWidth+spacer)))
 		let padH:CGFloat = 20 + lineWidth
-		let padLabel:CGFloat = 40
-		
-		// uilabels
-		for i in 0..<Int(count){
-			if(uiLabels.count > i){
-				let xPos:CGFloat = padW + CGFloat(i)*(lineWidth+spacer)
-				uiLabels[i].sizeToFit()
-				uiLabels[i].center = CGPoint.init(x: xPos, y: self.frame.size.height-padH)
-				self.bringSubview(toFront: uiLabels[i])
-			}
-		}
-		
+	
+		let barHeight = self.frame.size.height-(padH*2) - padLabel
+
 		// watermarks
 		for i in 0..<Int(count){
 			let layer = CAShapeLayer()
@@ -79,7 +103,7 @@ class UIChartView: UIView {
 			bz.move(to: CGPoint.init(x: xPos, y: self.frame.size.height-padH - padLabel))
 			bz.addLine(to: CGPoint.init(x: xPos, y: padH))
 			layer.path = bz.cgPath
-			layer.strokeColor = Style.shared.whiteSmoke.cgColor
+			layer.strokeColor = UIColor.init(white: 0.9, alpha: 1.0).cgColor
 			layer.lineWidth = lineWidth
 			layer.lineCap = kCALineCapRound
 			watermarkLayer.addSublayer(layer)
@@ -89,17 +113,16 @@ class UIChartView: UIView {
 		for i in 0..<values.count{
 			let layer = CAShapeLayer()
 			let bz = UIBezierPath()
-			let xPos:CGFloat = padW + CGFloat(i)*(lineWidth+spacer)
-			bz.move(to: CGPoint.init(x: xPos, y: self.frame.size.height-padH - padLabel))
-			bz.addLine(to: CGPoint.init(x: xPos, y: padH))
+			let xPos:CGFloat = padW + CGFloat(count-1-CGFloat(i)) * (lineWidth+spacer)
+			bz.move(to: CGPoint.init(x: xPos, y: padH + barHeight))
+			bz.addLine(to: CGPoint.init(x: xPos, y: padH + barHeight - barHeight*CGFloat(values[i])))
 			layer.path = bz.cgPath
-			layer.strokeColor = UIColor.appleBlue().cgColor
+			layer.strokeColor = Style.shared.blue.cgColor
 			layer.lineWidth = lineWidth
 			layer.lineCap = kCALineCapRound
 			barLayer.addSublayer(layer)
 		}
 		
-
 	}
 	
     // Only override draw() if you perform custom drawing.
