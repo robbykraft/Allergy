@@ -39,7 +39,10 @@ class Sample: NSObject {
 						v = valueInt
 //					} else if let valueString = itemValue as? String{
 					} else if itemValue is String{
-						v = -1
+//						v = -1
+						// big question here, should we report trace amounts, or
+						// count them the same as an unread sample.
+						// remember this is just for the public
 					}
 					if let value = v{
 						switch item {
@@ -70,7 +73,46 @@ class Sample: NSObject {
 		if let unixTime = data["date"] as? Double{
 			self.date = Date.init(timeIntervalSince1970: unixTime)
 		}
-
+	}
+	
+	func count() -> Int{
+		var count = 0
+		if (ash != nil){ count += 1 }
+		if (birch != nil){ count += 1 }
+		if (cedar != nil){ count += 1 }
+		if (cottonWood != nil){ count += 1 }
+		if (elm != nil){ count += 1 }
+		if (grass != nil){ count += 1 }
+		if (hackberry != nil){ count += 1 }
+		if (molds != nil){ count += 1 }
+		if (mullberry != nil){ count += 1 }
+		if (oak != nil){ count += 1 }
+		if (poplar != nil){ count += 1 }
+		if (privet != nil){ count += 1 }
+		if (sycamore != nil){ count += 1 }
+		if (walnut != nil){ count += 1 }
+		if (willow != nil){ count += 1 }
+		return count
+	}
+	
+	func dictionary() -> [String:Int]{
+		var d:[String:Int] = [:]
+		if (ash != nil){ d["ash"] = ash! }
+		if (birch != nil){ d["birch"] = birch! }
+		if (cedar != nil){ d["cedar"] = cedar! }
+		if (cottonWood != nil){ d["cottonWood"] = cottonWood! }
+		if (elm != nil){ d["elm"] = elm! }
+		if (grass != nil){ d["grass"] = grass! }
+		if (hackberry != nil){ d["hackberry"] = hackberry! }
+		if (molds != nil){ d["molds"] = molds! }
+		if (mullberry != nil){ d["mullberry"] = mullberry! }
+		if (oak != nil){ d["oak"] = oak! }
+		if (poplar != nil){ d["poplar"] = poplar! }
+		if (privet != nil){ d["privet"] = privet! }
+		if (sycamore != nil){ d["sycamore"] = sycamore! }
+		if (walnut != nil){ d["walnut"] = walnut! }
+		if (willow != nil){ d["willow"] = willow! }
+		return d
 	}
 	
 	func log(){

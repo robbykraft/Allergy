@@ -50,7 +50,7 @@ class ViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleL
 		self.view.backgroundColor = Style.shared.whiteSmoke
 		
 		Allergy.shared.loadRecentData(numberOfDays: 1) { (sample) in
-			self.radialChart.summary = sample.summary
+			self.radialChart.data = sample
 		}
 		
 		Allergy.shared.loadRecentData(numberOfDays: 5) { (sample) in
