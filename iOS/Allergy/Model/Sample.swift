@@ -94,44 +94,43 @@ class Sample: NSObject {
 		if (willow != nil){ count += 1 }
 		return count
 	}
-	
-	func dictionary() -> [String:Int]{
-		var d:[String:Int] = [:]
-		if (ash != nil){ d["ash"] = ash! }
-		if (birch != nil){ d["birch"] = birch! }
-		if (cedar != nil){ d["cedar"] = cedar! }
-		if (cottonWood != nil){ d["cottonWood"] = cottonWood! }
-		if (elm != nil){ d["elm"] = elm! }
-		if (grass != nil){ d["grass"] = grass! }
-		if (hackberry != nil){ d["hackberry"] = hackberry! }
-		if (molds != nil){ d["molds"] = molds! }
-		if (mullberry != nil){ d["mullberry"] = mullberry! }
-		if (oak != nil){ d["oak"] = oak! }
-		if (poplar != nil){ d["poplar"] = poplar! }
-		if (privet != nil){ d["privet"] = privet! }
-		if (sycamore != nil){ d["sycamore"] = sycamore! }
-		if (walnut != nil){ d["walnut"] = walnut! }
-		if (willow != nil){ d["willow"] = willow! }
-		return d
+	func report() -> [(String, Int, Int)]{
+		var report:[(String, Int, Int)] = []
+		if (ash != nil){ report.append( ("ash", ash!, 1200) ) }
+		if (birch != nil){ report.append( ("birch", birch!, 1200) ) }
+		if (cedar != nil){ report.append( ("cedar", cedar!, 1200) ) }
+		if (cottonWood != nil){ report.append( ("cotton wood", cottonWood!, 1200) ) }
+		if (elm != nil){ report.append( ("elm", elm!, 1200) ) }
+		if (grass != nil){ report.append( ("grass", grass!, 1200) ) }
+		if (hackberry != nil){ report.append( ("hackberry", hackberry!, 1200) ) }
+		if (molds != nil){ report.append( ("molds", molds!, 1200) ) }
+		if (mullberry != nil){ report.append( ("mullberry", mullberry!, 1200) ) }
+		if (oak != nil){ report.append( ("oak", oak!, 1200) ) }
+		if (poplar != nil){ report.append( ("poplar", poplar!, 1200) ) }
+		if (privet != nil){ report.append( ("privet", privet!, 1200) ) }
+		if (sycamore != nil){ report.append( ("sycamore", sycamore!, 1200) ) }
+		if (walnut != nil){ report.append( ("walnut", walnut!, 1200) ) }
+		if (willow != nil){ report.append( ("willow", willow!, 1200) ) }
+		return report
 	}
 	
 	func log(){
 		if(date != nil) { print(date!) }
-//		if(ash != nil) { print(ash!) }
-//		if(birch != nil) { print(birch!) }
-//		if(cedar != nil) { print(cedar!) }
-//		if(cottonWood != nil) { print(cottonWood!) }
-//		if(elm != nil) { print(elm!) }
-//		if(grass != nil) { print(grass!) }
-//		if(hackberry != nil) { print(hackberry!) }
-//		if(molds != nil) { print(molds!) }
-//		if(mullberry != nil) { print(mullberry!) }
-//		if(oak != nil) { print(oak!) }
-//		if(poplar != nil) { print(poplar!) }
-//		if(privet != nil) { print(privet!) }
-//		if(sycamore != nil) { print(sycamore!) }
-//		if(walnut != nil) { print(walnut!) }
-//		if(willow != nil) { print(willow!) }
+		if(ash != nil) { print(ash!) }
+		if(birch != nil) { print(birch!) }
+		if(cedar != nil) { print(cedar!) }
+		if(cottonWood != nil) { print(cottonWood!) }
+		if(elm != nil) { print(elm!) }
+		if(grass != nil) { print(grass!) }
+		if(hackberry != nil) { print(hackberry!) }
+		if(molds != nil) { print(molds!) }
+		if(mullberry != nil) { print(mullberry!) }
+		if(oak != nil) { print(oak!) }
+		if(poplar != nil) { print(poplar!) }
+		if(privet != nil) { print(privet!) }
+		if(sycamore != nil) { print(sycamore!) }
+		if(walnut != nil) { print(walnut!) }
+		if(willow != nil) { print(willow!) }
 	}
 
 	

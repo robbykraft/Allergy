@@ -13,9 +13,8 @@ class Preferences: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.title = "Preferences"
-		
-		let newBackButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(backButtonPressed))
+		self.title = "PREFERENCES"
+		let newBackButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneButtonPressed))
 		self.navigationItem.rightBarButtonItem = newBackButton
 
         // Do any additional setup after loading the view.
@@ -48,7 +47,7 @@ class Preferences: UITableViewController {
 		let cell = UITableViewCell.init(style: .default, reuseIdentifier: "PreferencesCell")
 		switch indexPath.section {
 		case 0:
-			cell.textLabel?.text = "Allergy Types"
+			cell.textLabel?.text = "My Allergies"
 		case 1:
 			switch indexPath.row {
 			case 0:
@@ -82,7 +81,7 @@ class Preferences: UITableViewController {
 			break
 		}
 	}
-	func backButtonPressed(){
+	func doneButtonPressed(){
 		self.dismiss(animated: true, completion: nil)
 	}
 

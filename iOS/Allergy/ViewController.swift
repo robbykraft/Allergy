@@ -17,6 +17,7 @@ class ViewController: UIViewController {
 	var barChart = UIBarChartView()
 	
 	let preferencesButton = UIButton()
+	let radialButton = UIButton()
 	
 	var data:[Int] = []{
 		didSet{
@@ -55,6 +56,11 @@ class ViewController: UIViewController {
 		barChart = UIBarChartView.init(frame: CGRect.init(x: 0, y: barChartTop, width: self.view.frame.size.width, height: 200))
 		self.view.addSubview(barChart)
 		
+		radialButton.frame = radialChart.frame
+		radialButton.backgroundColor = UIColor.clear
+		radialButton.addTarget(self, action: #selector(radialButtonPressed), for: .touchUpInside)
+		self.view.addSubview(radialButton)
+		
 		preferencesButton.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
 		preferencesButton.setImage(UIImage.init(named: "cogs")?.imageWithTint(UIColor.white), for: .normal)
 		preferencesButton.center = CGPoint.init(x: self.view.frame.size.width - 22-5, y: 22+22+5)
@@ -92,6 +98,16 @@ class ViewController: UIViewController {
 		let nav = UINavigationController()
 		nav.viewControllers = [Preferences.init(style: .grouped)]
 		self.present(nav, animated: true, completion: nil)
+	}
+	
+	func radialButtonPressed(){
+		if samples.count > 0{
+			let nav = UINavigationController()
+			let vc = DetailTableViewController()
+			vc.data = samples[0]
+			nav.viewControllers = [vc]
+			self.present(nav, animated: true, completion: nil)
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
