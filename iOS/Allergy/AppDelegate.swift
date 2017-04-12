@@ -45,6 +45,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		FIRApp.configure()
 		
 		_ = Fire.shared
+		_ = Pollen.shared
+		_ = Style.shared
+		
+		Pollen.shared.boot { (success) in
+			self.quickLaunch()
+		}
 		
 //		if (FIRAuth.auth()?.currentUser) != nil {
 //			// User is signed in.
@@ -53,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //			// No user is signed in.
 //			launchApp(true)
 //		}
-		self.quickLaunch()
 		return true
 	}
 	

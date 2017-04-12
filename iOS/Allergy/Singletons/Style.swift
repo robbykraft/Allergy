@@ -31,6 +31,7 @@ class Style {
 	let gray = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
 	let darkGray = UIColor(red:0.22, green:0.22, blue:0.22, alpha:1.00)
 	let whiteSmoke = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
+	let athensGray = UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.00)
 	let orange = UIColor(red: 255/255.0, green: 149/255.0, blue: 0, alpha: 1.0)
 	let blue = UIColor(red: 0, green: 122/255.0, blue: 1.0, alpha: 1.0)
 	let green = UIColor(red: 76/255.0, green: 217/255.0, blue: 100/255.0, alpha: 1.0)
@@ -58,7 +59,7 @@ class Style {
 			P12 = 24
 		}
 		
-//		styleUIAppearance()
+		styleUIAppearance()
 	}
 	
 	func heading1Attributes() -> [String:NSObject] {
@@ -76,17 +77,12 @@ class Style {
 	
 	func styleUIAppearance(){
 		let navigationBarAppearace = UINavigationBar.appearance()
-		navigationBarAppearace.tintColor = UIColor.white
-		navigationBarAppearace.setBackgroundImage(UIImage.init(named: "darkGray"), for: .default)
-		navigationBarAppearace.barStyle = UIBarStyle.blackTranslucent
-		navigationBarAppearace.titleTextAttributes = [NSFontAttributeName : UIFont(name: SYSTEM_FONT, size: 22)!,
-		                                              NSForegroundColorAttributeName : UIColor.white]
+//		navigationBarAppearace.tintColor = UIColor.white
+//		navigationBarAppearace.setBackgroundImage(UIImage.init(named: "darkGray"), for: .default)
+//		navigationBarAppearace.barStyle = UIBarStyle.blackTranslucent
+		navigationBarAppearace.titleTextAttributes = [NSFontAttributeName : UIFont(name: SYSTEM_FONT_B, size: self.P24)!,
+		                                              NSForegroundColorAttributeName : UIColor.black]
 		//	                                              NSKernAttributeName : CGFloat(-4.0)]
-		UITabBarItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: SYSTEM_FONT, size: 16)!,
-			NSForegroundColorAttributeName: UIColor.white], for: UIControlState())
-		UITabBar.appearance().shadowImage = UIImage()
-		UITabBar.appearance().backgroundImage = UIImage(named: "gray")
-		UITabBar.appearance().tintColor = UIColor.white
 		
 	}
 }

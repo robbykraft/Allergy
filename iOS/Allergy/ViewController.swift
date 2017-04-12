@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UINavigationControllerDelegate{
 	
 	let weekdayStrings = ["S", "M", "T", "W", "T", "F", "S"]
 	
@@ -19,22 +19,12 @@ class ViewController: UIViewController {
 	let preferencesButton = UIButton()
 	let radialButton = UIButton()
 	
-	var data:[Int] = []{
-		didSet{
-//			self.graph.reloadGraph()
-		}
-	}
-	var samples:[Sample] = []{
-		didSet{
-			for s in samples {
-				s.log()
-			}
-		}
-	}
+	var samples:[Sample] = []
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		UIApplication.shared.statusBarStyle = .lightContent
+		self.navigationController?.delegate = self
 	}
 	
 	override func viewDidLoad() {
@@ -50,7 +40,7 @@ class ViewController: UIViewController {
 		layer.fillColor = Style.shared.blue.cgColor
 		self.view.layer.addSublayer(layer)
 		
-		radialChart = UIRadialChart.init(frame: CGRect.init(x: 0, y: 10, width: self.view.frame.size.width, height: self.view.frame.size.width))
+		radialChart = UIRadialChart.init(frame: CGRect.init(x: 0, y: 22, width: self.view.frame.size.width, height: self.view.frame.size.width))
 		self.view.addSubview(radialChart)
 		
 		barChart = UIBarChartView.init(frame: CGRect.init(x: 0, y: barChartTop, width: self.view.frame.size.width, height: 200))
@@ -67,11 +57,11 @@ class ViewController: UIViewController {
 		preferencesButton.addTarget(self, action: #selector(preferencesButtonPressed), for: .touchUpInside)
 		self.view.addSubview(preferencesButton)
 		
-		Allergy.shared.loadRecentData(numberOfDays: 1) { (sample) in
+		Pollen.shared.loadRecentData(numberOfDays: 1) { (sample) in
 			self.radialChart.data = sample
 		}
 		
-		Allergy.shared.loadRecentData(numberOfDays: 5) { (sample) in
+		Pollen.shared.loadRecentData(numberOfDays: 5) { (sample) in
 			self.samples.append(sample)
 			// build bar chart again
 			var barValues:[Float] = []
@@ -106,15 +96,15 @@ class ViewController: UIViewController {
 			let vc = DetailTableViewController()
 			vc.data = samples[0]
 			nav.viewControllers = [vc]
+			nav.modalPresentationStyle = .custom
+			nav.modalTransitionStyle = .crossDissolve
 			self.present(nav, animated: true, completion: nil)
 		}
 	}
-
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
 
-
 }
-

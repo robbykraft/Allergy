@@ -28,6 +28,7 @@ class DetailTableViewController: UITableViewController {
 		let newBackButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneButtonPressed))
 		self.navigationItem.rightBarButtonItem = newBackButton
 
+		self.tableView.separatorStyle = .none
 		
 		// Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -66,7 +67,7 @@ class DetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 		let cell = LineTableViewCell.init(style: .default, reuseIdentifier: "BarTableViewCell")
-		
+		cell.selectionStyle = .none
 		if let r = report{
 			if r.count > indexPath.row{
 				let (name, value, max) = r[indexPath.row]

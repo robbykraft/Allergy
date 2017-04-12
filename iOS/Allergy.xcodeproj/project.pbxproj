@@ -14,12 +14,13 @@
 		D51C22AE1E92E5EB00887F42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51C22AD1E92E5EB00887F42 /* Assets.xcassets */; };
 		D51C22B11E92E5EB00887F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51C22AF1E92E5EB00887F42 /* LaunchScreen.storyboard */; };
 		D51C22B91E92E5FB00887F42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51C22B81E92E5FB00887F42 /* GoogleService-Info.plist */; };
+		D5300EB91E9EC46900874C18 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5300EB81E9EC46900874C18 /* SliderTableViewCell.swift */; };
 		D532B3211E9C82240090FC7A /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3201E9C82240090FC7A /* Style.swift */; };
-		D532B3231E9C840E0090FC7A /* Allergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3221E9C840E0090FC7A /* Allergy.swift */; };
+		D532B3231E9C840E0090FC7A /* Pollen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3221E9C840E0090FC7A /* Pollen.swift */; };
 		D532B3261E9C86360090FC7A /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3251E9C86360090FC7A /* Sample.swift */; };
 		D532B3281E9D4F700090FC7A /* UIRadialChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3271E9D4F700090FC7A /* UIRadialChart.swift */; };
 		D54B973D1E9DD32E0064EAED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B973C1E9DD32E0064EAED /* Extensions.swift */; };
-		D54B97401E9DD83B0064EAED /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B973F1E9DD83B0064EAED /* Settings.swift */; };
+		D54B97401E9DD83B0064EAED /* MyAllergies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B973F1E9DD83B0064EAED /* MyAllergies.swift */; };
 		D54B97421E9DD8610064EAED /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B97411E9DD8610064EAED /* Preferences.swift */; };
 		D55D06941E9C2161000AB9D9 /* UIBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */; };
 		D5A997331E9BE71200F37F52 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997311E9BE71200F37F52 /* LoginViewController.swift */; };
@@ -43,12 +44,13 @@
 		D51C22B01E92E5EB00887F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D51C22B21E92E5EB00887F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D51C22B81E92E5FB00887F42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D5300EB81E9EC46900874C18 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
 		D532B3201E9C82240090FC7A /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		D532B3221E9C840E0090FC7A /* Allergy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Allergy.swift; sourceTree = "<group>"; };
+		D532B3221E9C840E0090FC7A /* Pollen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pollen.swift; sourceTree = "<group>"; };
 		D532B3251E9C86360090FC7A /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		D532B3271E9D4F700090FC7A /* UIRadialChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadialChart.swift; sourceTree = "<group>"; };
 		D54B973C1E9DD32E0064EAED /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		D54B973F1E9DD83B0064EAED /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D54B973F1E9DD83B0064EAED /* MyAllergies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAllergies.swift; sourceTree = "<group>"; };
 		D54B97411E9DD8610064EAED /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarChartView.swift; sourceTree = "<group>"; };
 		D5A997311E9BE71200F37F52 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				D54B97411E9DD8610064EAED /* Preferences.swift */,
-				D54B973F1E9DD83B0064EAED /* Settings.swift */,
+				D54B973F1E9DD83B0064EAED /* MyAllergies.swift */,
+				D5300EB81E9EC46900874C18 /* SliderTableViewCell.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -150,7 +153,7 @@
 		D5A9973B1E9BEC8600F37F52 /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
-				D532B3221E9C840E0090FC7A /* Allergy.swift */,
+				D532B3221E9C840E0090FC7A /* Pollen.swift */,
 				D532B3201E9C82240090FC7A /* Style.swift */,
 				D5A9973D1E9BEC8600F37F52 /* Fire.swift */,
 				D5A9973C1E9BEC8600F37F52 /* Cache.swift */,
@@ -305,19 +308,20 @@
 				D5A9973E1E9BEC8600F37F52 /* Cache.swift in Sources */,
 				D54B97421E9DD8610064EAED /* Preferences.swift in Sources */,
 				D532B3281E9D4F700090FC7A /* UIRadialChart.swift in Sources */,
+				D5300EB91E9EC46900874C18 /* SliderTableViewCell.swift in Sources */,
 				D5D014DB1E9E71DA00BF7374 /* DetailTableViewController.swift in Sources */,
 				D5A997341E9BE71200F37F52 /* ProfileViewController.swift in Sources */,
 				D54B973D1E9DD32E0064EAED /* Extensions.swift in Sources */,
 				D55D06941E9C2161000AB9D9 /* UIBarChartView.swift in Sources */,
 				D532B3211E9C82240090FC7A /* Style.swift in Sources */,
-				D532B3231E9C840E0090FC7A /* Allergy.swift in Sources */,
+				D532B3231E9C840E0090FC7A /* Pollen.swift in Sources */,
 				D51C22A91E92E5EB00887F42 /* ViewController.swift in Sources */,
 				D5D014DC1E9E71DA00BF7374 /* LineTableViewCell.swift in Sources */,
 				D5A9973F1E9BEC8600F37F52 /* Fire.swift in Sources */,
 				D5A997361E9BE71D00F37F52 /* MasterNavigationController.swift in Sources */,
 				D5A997331E9BE71200F37F52 /* LoginViewController.swift in Sources */,
 				D51C22A71E92E5EB00887F42 /* AppDelegate.swift in Sources */,
-				D54B97401E9DD83B0064EAED /* Settings.swift in Sources */,
+				D54B97401E9DD83B0064EAED /* MyAllergies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
