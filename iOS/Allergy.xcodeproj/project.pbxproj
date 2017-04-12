@@ -18,18 +18,15 @@
 		D532B3231E9C840E0090FC7A /* Allergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3221E9C840E0090FC7A /* Allergy.swift */; };
 		D532B3261E9C86360090FC7A /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3251E9C86360090FC7A /* Sample.swift */; };
 		D532B3281E9D4F700090FC7A /* UIRadialChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532B3271E9D4F700090FC7A /* UIRadialChart.swift */; };
+		D54B973D1E9DD32E0064EAED /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B973C1E9DD32E0064EAED /* Extensions.swift */; };
+		D54B97401E9DD83B0064EAED /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B973F1E9DD83B0064EAED /* Settings.swift */; };
+		D54B97421E9DD8610064EAED /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B97411E9DD8610064EAED /* Preferences.swift */; };
 		D55D06941E9C2161000AB9D9 /* UIBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */; };
 		D5A997331E9BE71200F37F52 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997311E9BE71200F37F52 /* LoginViewController.swift */; };
 		D5A997341E9BE71200F37F52 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997321E9BE71200F37F52 /* ProfileViewController.swift */; };
 		D5A997361E9BE71D00F37F52 /* MasterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997351E9BE71D00F37F52 /* MasterNavigationController.swift */; };
 		D5A9973E1E9BEC8600F37F52 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9973C1E9BEC8600F37F52 /* Cache.swift */; };
 		D5A9973F1E9BEC8600F37F52 /* Fire.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A9973D1E9BEC8600F37F52 /* Fire.swift */; };
-		D5A9976F1E9C020B00F37F52 /* BEMAverageLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A997661E9C020B00F37F52 /* BEMAverageLine.m */; };
-		D5A997701E9C020B00F37F52 /* BEMCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A997681E9C020B00F37F52 /* BEMCircle.m */; };
-		D5A997711E9C020B00F37F52 /* BEMLine.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A9976A1E9C020B00F37F52 /* BEMLine.m */; };
-		D5A997721E9C020B00F37F52 /* BEMPermanentPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A9976C1E9C020B00F37F52 /* BEMPermanentPopupView.m */; };
-		D5A997731E9C020B00F37F52 /* BEMSimpleLineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A9976E1E9C020B00F37F52 /* BEMSimpleLineGraphView.m */; };
-		D5CA34181E96DC8700E19AD8 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CA34171E96DC8700E19AD8 /* Settings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,24 +45,15 @@
 		D532B3221E9C840E0090FC7A /* Allergy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Allergy.swift; sourceTree = "<group>"; };
 		D532B3251E9C86360090FC7A /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		D532B3271E9D4F700090FC7A /* UIRadialChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRadialChart.swift; sourceTree = "<group>"; };
+		D54B973C1E9DD32E0064EAED /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D54B973F1E9DD83B0064EAED /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D54B97411E9DD8610064EAED /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarChartView.swift; sourceTree = "<group>"; };
 		D5A997311E9BE71200F37F52 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D5A997321E9BE71200F37F52 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D5A997351E9BE71D00F37F52 /* MasterNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterNavigationController.swift; sourceTree = "<group>"; };
 		D5A9973C1E9BEC8600F37F52 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		D5A9973D1E9BEC8600F37F52 /* Fire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fire.swift; sourceTree = "<group>"; };
-		D5A997651E9C020B00F37F52 /* BEMAverageLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMAverageLine.h; sourceTree = "<group>"; };
-		D5A997661E9C020B00F37F52 /* BEMAverageLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMAverageLine.m; sourceTree = "<group>"; };
-		D5A997671E9C020B00F37F52 /* BEMCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMCircle.h; sourceTree = "<group>"; };
-		D5A997681E9C020B00F37F52 /* BEMCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMCircle.m; sourceTree = "<group>"; };
-		D5A997691E9C020B00F37F52 /* BEMLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMLine.h; sourceTree = "<group>"; };
-		D5A9976A1E9C020B00F37F52 /* BEMLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMLine.m; sourceTree = "<group>"; };
-		D5A9976B1E9C020B00F37F52 /* BEMPermanentPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMPermanentPopupView.h; sourceTree = "<group>"; };
-		D5A9976C1E9C020B00F37F52 /* BEMPermanentPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMPermanentPopupView.m; sourceTree = "<group>"; };
-		D5A9976D1E9C020B00F37F52 /* BEMSimpleLineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BEMSimpleLineGraphView.h; sourceTree = "<group>"; };
-		D5A9976E1E9C020B00F37F52 /* BEMSimpleLineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BEMSimpleLineGraphView.m; sourceTree = "<group>"; };
-		D5A997741E9C02A800F37F52 /* BEMSimpleLineGraph-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BEMSimpleLineGraph-Bridging-Header.h"; path = "Allergy/BEMSimpleLineGraph-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		D5CA34171E96DC8700E19AD8 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,9 +104,8 @@
 				D51C22A81E92E5EB00887F42 /* ViewController.swift */,
 				D532B3271E9D4F700090FC7A /* UIRadialChart.swift */,
 				D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */,
-				D5A997641E9C020B00F37F52 /* BEMSimpleLineGraph */,
-				D5CA34171E96DC8700E19AD8 /* Settings.swift */,
 				D5A997351E9BE71D00F37F52 /* MasterNavigationController.swift */,
+				D54B973E1E9DD83B0064EAED /* Preferences */,
 				D51C22AA1E92E5EB00887F42 /* Main.storyboard */,
 				D51C22AD1E92E5EB00887F42 /* Assets.xcassets */,
 				D51C22AF1E92E5EB00887F42 /* LaunchScreen.storyboard */,
@@ -131,9 +118,19 @@
 		D532B3241E9C861E0090FC7A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D54B973C1E9DD32E0064EAED /* Extensions.swift */,
 				D532B3251E9C86360090FC7A /* Sample.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D54B973E1E9DD83B0064EAED /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				D54B97411E9DD8610064EAED /* Preferences.swift */,
+				D54B973F1E9DD83B0064EAED /* Settings.swift */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		D5A997301E9BE71200F37F52 /* Login */ = {
@@ -154,24 +151,6 @@
 				D5A9973C1E9BEC8600F37F52 /* Cache.swift */,
 			);
 			path = Singletons;
-			sourceTree = "<group>";
-		};
-		D5A997641E9C020B00F37F52 /* BEMSimpleLineGraph */ = {
-			isa = PBXGroup;
-			children = (
-				D5A997741E9C02A800F37F52 /* BEMSimpleLineGraph-Bridging-Header.h */,
-				D5A997651E9C020B00F37F52 /* BEMAverageLine.h */,
-				D5A997661E9C020B00F37F52 /* BEMAverageLine.m */,
-				D5A997671E9C020B00F37F52 /* BEMCircle.h */,
-				D5A997681E9C020B00F37F52 /* BEMCircle.m */,
-				D5A997691E9C020B00F37F52 /* BEMLine.h */,
-				D5A9976A1E9C020B00F37F52 /* BEMLine.m */,
-				D5A9976B1E9C020B00F37F52 /* BEMPermanentPopupView.h */,
-				D5A9976C1E9C020B00F37F52 /* BEMPermanentPopupView.m */,
-				D5A9976D1E9C020B00F37F52 /* BEMSimpleLineGraphView.h */,
-				D5A9976E1E9C020B00F37F52 /* BEMSimpleLineGraphView.m */,
-			);
-			path = BEMSimpleLineGraph;
 			sourceTree = "<group>";
 		};
 		D71FAD3989B127902A9C977F /* Pods */ = {
@@ -308,24 +287,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5A997711E9C020B00F37F52 /* BEMLine.m in Sources */,
 				D532B3261E9C86360090FC7A /* Sample.swift in Sources */,
-				D5A997701E9C020B00F37F52 /* BEMCircle.m in Sources */,
 				D5A9973E1E9BEC8600F37F52 /* Cache.swift in Sources */,
-				D5A997721E9C020B00F37F52 /* BEMPermanentPopupView.m in Sources */,
+				D54B97421E9DD8610064EAED /* Preferences.swift in Sources */,
 				D532B3281E9D4F700090FC7A /* UIRadialChart.swift in Sources */,
 				D5A997341E9BE71200F37F52 /* ProfileViewController.swift in Sources */,
+				D54B973D1E9DD32E0064EAED /* Extensions.swift in Sources */,
 				D55D06941E9C2161000AB9D9 /* UIBarChartView.swift in Sources */,
 				D532B3211E9C82240090FC7A /* Style.swift in Sources */,
 				D532B3231E9C840E0090FC7A /* Allergy.swift in Sources */,
 				D51C22A91E92E5EB00887F42 /* ViewController.swift in Sources */,
-				D5A997731E9C020B00F37F52 /* BEMSimpleLineGraphView.m in Sources */,
 				D5A9973F1E9BEC8600F37F52 /* Fire.swift in Sources */,
-				D5CA34181E96DC8700E19AD8 /* Settings.swift in Sources */,
 				D5A997361E9BE71D00F37F52 /* MasterNavigationController.swift in Sources */,
 				D5A997331E9BE71200F37F52 /* LoginViewController.swift in Sources */,
-				D5A9976F1E9C020B00F37F52 /* BEMAverageLine.m in Sources */,
 				D51C22A71E92E5EB00887F42 /* AppDelegate.swift in Sources */,
+				D54B97401E9DD83B0064EAED /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +433,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.robbykraft.Allergy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Allergy/BEMSimpleLineGraph-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -473,7 +449,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.robbykraft.Allergy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Allergy/BEMSimpleLineGraph-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
