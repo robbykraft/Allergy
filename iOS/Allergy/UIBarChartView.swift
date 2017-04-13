@@ -118,6 +118,9 @@ class UIBarChartView: UIView {
 			bz.addLine(to: CGPoint.init(x: xPos, y: padH + barHeight - barHeight*CGFloat(values[i])))
 			layer.path = bz.cgPath
 			layer.strokeColor = Style.shared.blue.cgColor
+			if(i != 0){
+				layer.strokeColor = Style.shared.lightBlue.cgColor
+			}
 			layer.lineWidth = lineWidth
 			layer.lineCap = kCALineCapRound
 			barLayer.addSublayer(layer)

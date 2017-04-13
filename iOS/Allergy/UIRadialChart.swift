@@ -12,17 +12,7 @@ class UIRadialChart: UIView {
 	
 	var data:Sample?{
 		didSet{
-			if let d = data{
-				if let s = d.summary{
-					label.text = s
-				}
-				for label in self.radialLabels{
-					label.removeFromSuperview()
-				}
-				self.radialLabels = []
-			}
-			self.layoutSubviews()
-			redrawGraph()
+			self.refreshViewData()
 		}
 	}
 	
@@ -34,6 +24,32 @@ class UIRadialChart: UIView {
 	var radialLabels:[UILabel] = []
 	
 	let todaysAllergyLabel = UILabel()
+	
+	
+	func refreshViewData() {
+		if let d = data{
+			let summary = d.generateSummary()
+			switch summary {
+			case .veryHeavy:
+				label.text = "very heavy"
+			case .heavy:
+				label.text = "heavy"
+			case .medium:
+				label.text = "medium"
+			case .low:
+				label.text = "light"
+			case .none:
+				label.text = "no pollen"
+			}
+		}
+		for label in self.radialLabels{
+			label.removeFromSuperview()
+		}
+		self.radialLabels = []
+		self.layoutSubviews()
+		redrawGraph()
+		
+	}
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -59,7 +75,7 @@ class UIRadialChart: UIView {
 		layer.fillColor = Style.shared.whiteSmoke.cgColor
 		circleLayer.addSublayer(layer)
 		
-		label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P64)
+		label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P48)
 		label.textColor = UIColor.black
 		self.addSubview(label)
 		
@@ -76,7 +92,6 @@ class UIRadialChart: UIView {
 		
 		todaysAllergyLabel.sizeToFit()
 		todaysAllergyLabel.center = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5 - self.frame.width*0.33 + 50)
-
 	}
 	
 	func redrawGraph(){
@@ -122,6 +137,7 @@ class UIRadialChart: UIView {
 				var transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi*0.5) + angle*CGFloat(Float(i)+0.5))
 				transform = transform.translatedBy(x: 0, y: -((radius+20)+thisRadius-12))
 				radialLabel.transform = transform
+				self.radialLabels.append(radialLabel)
 				self.addSubview(radialLabel)
 			}
 		}
@@ -131,13 +147,4 @@ class UIRadialChart: UIView {
 		self.layer.insertSublayer(circleLayer, below: label.layer)
 	}
 	
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }

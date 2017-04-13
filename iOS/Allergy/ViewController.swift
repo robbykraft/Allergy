@@ -25,6 +25,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		super.viewWillAppear(animated)
 		UIApplication.shared.statusBarStyle = .lightContent
 		self.navigationController?.delegate = self
+		
+		radialChart.refreshViewData()
 	}
 	
 	override func viewDidLoad() {

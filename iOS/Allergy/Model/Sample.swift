@@ -10,8 +10,6 @@ import UIKit
 
 class Sample: NSObject {
 	
-	var summary:String?
-	
 	var date:Date?
 	
 	var ash:Int?
@@ -67,50 +65,75 @@ class Sample: NSObject {
 				}
 			}
 		}
-		if let allergy = data["allergy"] as? [String:Any]{
-			self.summary = allergy["summary"] as? String
-		}
 		if let unixTime = data["date"] as? Double{
 			self.date = Date.init(timeIntervalSince1970: unixTime)
 		}
 	}
 	
+	func generateSummary() -> Rating{
+		var ratings:[Rating] = []
+		if (ash != nil && Pollen.shared.myAllergies["ash"] == true){ ratings.append(Pollen.shared.ratingFor(key:"ash", value: ash! )) }
+		if (birch != nil && Pollen.shared.myAllergies["bir"] == true){ ratings.append(Pollen.shared.ratingFor(key:"bir", value: birch! )) }
+		if (cedar != nil && Pollen.shared.myAllergies["cdr"] == true){ ratings.append(Pollen.shared.ratingFor(key:"cdr", value: cedar! )) }
+		if (cottonWood != nil && Pollen.shared.myAllergies["cot"] == true){ ratings.append(Pollen.shared.ratingFor(key:"cot", value: cottonWood! )) }
+		if (elm != nil && Pollen.shared.myAllergies["elm"] == true){ ratings.append(Pollen.shared.ratingFor(key:"elm", value: elm! )) }
+		if (grass != nil && Pollen.shared.myAllergies["grs"] == true){ ratings.append(Pollen.shared.ratingFor(key:"grs", value: grass! )) }
+		if (hackberry != nil && Pollen.shared.myAllergies["hck"] == true){ ratings.append(Pollen.shared.ratingFor(key:"hck", value: hackberry! )) }
+		if (molds != nil && Pollen.shared.myAllergies["mld"] == true){ ratings.append(Pollen.shared.ratingFor(key:"mld", value: molds! )) }
+		if (mullberry != nil && Pollen.shared.myAllergies["mul"] == true){ ratings.append(Pollen.shared.ratingFor(key:"mul", value: mullberry! )) }
+		if (oak != nil && Pollen.shared.myAllergies["oak"] == true){ ratings.append(Pollen.shared.ratingFor(key:"oak", value: oak! )) }
+		if (poplar != nil && Pollen.shared.myAllergies["pop"] == true){ ratings.append(Pollen.shared.ratingFor(key:"pop", value: poplar! )) }
+		if (privet != nil && Pollen.shared.myAllergies["prv"] == true){ ratings.append(Pollen.shared.ratingFor(key:"prv", value: privet! )) }
+		if (sycamore != nil && Pollen.shared.myAllergies["syc"] == true){ ratings.append(Pollen.shared.ratingFor(key:"syc", value: sycamore! )) }
+		if (walnut != nil && Pollen.shared.myAllergies["wal"] == true){ ratings.append(Pollen.shared.ratingFor(key:"wal", value: walnut! )) }
+		if (willow != nil && Pollen.shared.myAllergies["wil"] == true){ ratings.append(Pollen.shared.ratingFor(key:"wil", value: willow! )) }
+		
+		if(ratings.contains(.veryHeavy)){ return .veryHeavy }
+		if(ratings.contains(.heavy)){ return .heavy }
+		if(ratings.contains(.medium)){ return .medium }
+		if(ratings.contains(.low)){ return .low }
+		return .none
+	}
+	
 	func count() -> Int{
 		var count = 0
-		if (ash != nil){ count += 1 }
-		if (birch != nil){ count += 1 }
-		if (cedar != nil){ count += 1 }
-		if (cottonWood != nil){ count += 1 }
-		if (elm != nil){ count += 1 }
-		if (grass != nil){ count += 1 }
-		if (hackberry != nil){ count += 1 }
-		if (molds != nil){ count += 1 }
-		if (mullberry != nil){ count += 1 }
-		if (oak != nil){ count += 1 }
-		if (poplar != nil){ count += 1 }
-		if (privet != nil){ count += 1 }
-		if (sycamore != nil){ count += 1 }
-		if (walnut != nil){ count += 1 }
-		if (willow != nil){ count += 1 }
+		if (ash != nil && Pollen.shared.myAllergies["ash"] == true){ count += 1 }
+		if (birch != nil && Pollen.shared.myAllergies["bir"] == true){ count += 1 }
+		if (cedar != nil && Pollen.shared.myAllergies["cdr"] == true){ count += 1 }
+		if (cottonWood != nil && Pollen.shared.myAllergies["cot"] == true){ count += 1 }
+		if (elm != nil && Pollen.shared.myAllergies["elm"] == true){ count += 1 }
+		if (grass != nil && Pollen.shared.myAllergies["grs"] == true){ count += 1 }
+		if (hackberry != nil && Pollen.shared.myAllergies["hck"] == true){ count += 1 }
+		if (molds != nil && Pollen.shared.myAllergies["mld"] == true){ count += 1 }
+		if (mullberry != nil && Pollen.shared.myAllergies["mul"] == true){ count += 1 }
+		if (oak != nil && Pollen.shared.myAllergies["oak"] == true){ count += 1 }
+		if (poplar != nil && Pollen.shared.myAllergies["pop"] == true){ count += 1 }
+		if (privet != nil && Pollen.shared.myAllergies["prv"] == true){ count += 1 }
+		if (sycamore != nil && Pollen.shared.myAllergies["syc"] == true){ count += 1 }
+		if (walnut != nil && Pollen.shared.myAllergies["wal"] == true){ count += 1 }
+		if (willow != nil && Pollen.shared.myAllergies["wil"] == true){ count += 1 }
 		return count
 	}
+	
+	// my report gives back the sample, filtered through your curated list of allergy types
+	//
 	func report() -> [(String, Int, Int, Rating)]{
 		var report:[(String, Int, Int, Rating)] = []
-		if (ash != nil){ report.append( ("ash", ash!, Pollen.shared.veryHeavyFor(key: "ash"), Pollen.shared.ratingFor(key: "ash", value: ash!) ) ) }
-		if (birch != nil){ report.append( ("birch", birch!, Pollen.shared.veryHeavyFor(key: "bir"), Pollen.shared.ratingFor(key: "bir", value: birch! ) ) ) }
-		if (cedar != nil){ report.append( ("cedar", cedar!, Pollen.shared.veryHeavyFor(key: "cdr"), Pollen.shared.ratingFor(key: "cdr", value: cedar! ) ) ) }
-		if (cottonWood != nil){ report.append( ("cotton wood", cottonWood!, Pollen.shared.veryHeavyFor(key: "cot"), Pollen.shared.ratingFor(key: "cot", value: cottonWood! ) ) ) }
-		if (elm != nil){ report.append( ("elm", elm!, Pollen.shared.veryHeavyFor(key: "elm"), Pollen.shared.ratingFor(key: "elm", value: elm! ) ) ) }
-		if (grass != nil){ report.append( ("grass", grass!, Pollen.shared.veryHeavyFor(key: "grs"), Pollen.shared.ratingFor(key: "grs", value: grass! ) ) ) }
-		if (hackberry != nil){ report.append( ("hackberry", hackberry!, Pollen.shared.veryHeavyFor(key: "hck"), Pollen.shared.ratingFor(key: "hck", value: hackberry! ) ) ) }
-		if (molds != nil){ report.append( ("molds", molds!, Pollen.shared.veryHeavyFor(key: "mld"), Pollen.shared.ratingFor(key: "mld", value: molds! ) ) ) }
-		if (mullberry != nil){ report.append( ("mullberry", mullberry!, Pollen.shared.veryHeavyFor(key: "mul"), Pollen.shared.ratingFor(key: "mul", value: mullberry! ) ) ) }
-		if (oak != nil){ report.append( ("oak", oak!, Pollen.shared.veryHeavyFor(key: "oak"), Pollen.shared.ratingFor(key: "oak", value: oak! ) ) ) }
-		if (poplar != nil){ report.append( ("poplar", poplar!, Pollen.shared.veryHeavyFor(key: "pop"), Pollen.shared.ratingFor(key: "pop", value: poplar! ) ) ) }
-		if (privet != nil){ report.append( ("privet", privet!, Pollen.shared.veryHeavyFor(key: "prv"), Pollen.shared.ratingFor(key: "prv", value: privet! ) ) ) }
-		if (sycamore != nil){ report.append( ("sycamore", sycamore!, Pollen.shared.veryHeavyFor(key: "syc"), Pollen.shared.ratingFor(key: "syc", value: sycamore! ) ) ) }
-		if (walnut != nil){ report.append( ("walnut", walnut!, Pollen.shared.veryHeavyFor(key: "wal"), Pollen.shared.ratingFor(key: "wal", value: walnut! ) ) ) }
-		if (willow != nil){ report.append( ("willow", willow!, Pollen.shared.veryHeavyFor(key: "wil"), Pollen.shared.ratingFor(key: "wil", value: willow! ) ) ) }
+		if (ash != nil && Pollen.shared.myAllergies["ash"] == true){ report.append( ("ash", ash!, Pollen.shared.veryHeavyFor(key: "ash"), Pollen.shared.ratingFor(key: "ash", value: ash! ) ) ) }
+		if (birch != nil && Pollen.shared.myAllergies["bir"] == true){ report.append( ("birch", birch!, Pollen.shared.veryHeavyFor(key: "bir"), Pollen.shared.ratingFor(key: "bir", value: birch! ) ) ) }
+		if (cedar != nil && Pollen.shared.myAllergies["cdr"] == true){ report.append( ("cedar", cedar!, Pollen.shared.veryHeavyFor(key: "cdr"), Pollen.shared.ratingFor(key: "cdr", value: cedar! ) ) ) }
+		if (cottonWood != nil && Pollen.shared.myAllergies["cot"] == true){ report.append( ("cotton wood", cottonWood!, Pollen.shared.veryHeavyFor(key: "cot"), Pollen.shared.ratingFor(key: "cot", value: cottonWood! ) ) ) }
+		if (elm != nil && Pollen.shared.myAllergies["elm"] == true){ report.append( ("elm", elm!, Pollen.shared.veryHeavyFor(key: "elm"), Pollen.shared.ratingFor(key: "elm", value: elm! ) ) ) }
+		if (grass != nil && Pollen.shared.myAllergies["grs"] == true){ report.append( ("grass", grass!, Pollen.shared.veryHeavyFor(key: "grs"), Pollen.shared.ratingFor(key: "grs", value: grass! ) ) ) }
+		if (hackberry != nil && Pollen.shared.myAllergies["hck"] == true){ report.append( ("hackberry", hackberry!, Pollen.shared.veryHeavyFor(key: "hck"), Pollen.shared.ratingFor(key: "hck", value: hackberry! ) ) ) }
+		if (molds != nil && Pollen.shared.myAllergies["mld"] == true){ report.append( ("molds", molds!, Pollen.shared.veryHeavyFor(key: "mld"), Pollen.shared.ratingFor(key: "mld", value: molds! ) ) ) }
+		if (mullberry != nil && Pollen.shared.myAllergies["mul"] == true){ report.append( ("mullberry", mullberry!, Pollen.shared.veryHeavyFor(key: "mul"), Pollen.shared.ratingFor(key: "mul", value: mullberry! ) ) ) }
+		if (oak != nil && Pollen.shared.myAllergies["oak"] == true){ report.append( ("oak", oak!, Pollen.shared.veryHeavyFor(key: "oak"), Pollen.shared.ratingFor(key: "oak", value: oak! ) ) ) }
+		if (poplar != nil && Pollen.shared.myAllergies["pop"] == true){ report.append( ("poplar", poplar!, Pollen.shared.veryHeavyFor(key: "pop"), Pollen.shared.ratingFor(key: "pop", value: poplar! ) ) ) }
+		if (privet != nil && Pollen.shared.myAllergies["prv"] == true){ report.append( ("privet", privet!, Pollen.shared.veryHeavyFor(key: "prv"), Pollen.shared.ratingFor(key: "prv", value: privet! ) ) ) }
+		if (sycamore != nil && Pollen.shared.myAllergies["syc"] == true){ report.append( ("sycamore", sycamore!, Pollen.shared.veryHeavyFor(key: "syc"), Pollen.shared.ratingFor(key: "syc", value: sycamore! ) ) ) }
+		if (walnut != nil && Pollen.shared.myAllergies["wal"] == true){ report.append( ("walnut", walnut!, Pollen.shared.veryHeavyFor(key: "wal"), Pollen.shared.ratingFor(key: "wal", value: walnut! ) ) ) }
+		if (willow != nil && Pollen.shared.myAllergies["wil"] == true){ report.append( ("willow", willow!, Pollen.shared.veryHeavyFor(key: "wil"), Pollen.shared.ratingFor(key: "wil", value: willow! ) ) ) }
 		return report
 	}
 	
