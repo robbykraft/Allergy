@@ -49,8 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		_ = Style.shared
 		
 		Pollen.shared.boot { (success) in
-			self.quickLaunch()
 		}
+		self.quickLaunch()
 		
 //		if (FIRAuth.auth()?.currentUser) != nil {
 //			// User is signed in.

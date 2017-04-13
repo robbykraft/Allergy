@@ -8,7 +8,17 @@
 
 import Foundation
 
+enum Rating {
+	case none
+	case low
+	case medium
+	case heavy
+	case veryHeavy
+}
+
+
 class Pollen {
+
 	static let shared = Pollen()
 	
 	// fill on boot
@@ -45,6 +55,32 @@ class Pollen {
 			}
 		}
 	}
+	
+	func veryHeavyFor(key:String) -> Int{
+		let pollenType:[String:Any] = self.types[key] as! [String : Any]
+		if let levels = pollenType["levels"] as? [String:Any]{
+			return levels["vh"] as! Int
+		}
+		return 1
+	}
+
+	
+	func ratingFor(key:String, value:Int) -> Rating{
+		let pollenType:[String:Any] = self.types[key] as! [String : Any]
+		if let levels = pollenType["levels"] as? [String:Any]{
+			let low:Int = levels["l"] as! Int
+			let med:Int = levels["m"] as! Int
+			let heavy:Int = levels["h"] as! Int
+			let veryHeavy:Int = levels["vh"] as! Int
+			if value < low{ return .none }
+			if value < med{ return .low }
+			if value < heavy{ return .medium }
+			if value < veryHeavy{ return .heavy }
+			return .veryHeavy
+		}
+		return .none
+	}
+	
 	
 	func refreshUserDefaults(){
 		let defaults = UserDefaults.standard

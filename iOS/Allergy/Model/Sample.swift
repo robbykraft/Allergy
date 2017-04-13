@@ -94,23 +94,23 @@ class Sample: NSObject {
 		if (willow != nil){ count += 1 }
 		return count
 	}
-	func report() -> [(String, Int, Int)]{
-		var report:[(String, Int, Int)] = []
-		if (ash != nil){ report.append( ("ash", ash!, 1200) ) }
-		if (birch != nil){ report.append( ("birch", birch!, 1200) ) }
-		if (cedar != nil){ report.append( ("cedar", cedar!, 1200) ) }
-		if (cottonWood != nil){ report.append( ("cotton wood", cottonWood!, 1200) ) }
-		if (elm != nil){ report.append( ("elm", elm!, 1200) ) }
-		if (grass != nil){ report.append( ("grass", grass!, 1200) ) }
-		if (hackberry != nil){ report.append( ("hackberry", hackberry!, 1200) ) }
-		if (molds != nil){ report.append( ("molds", molds!, 1200) ) }
-		if (mullberry != nil){ report.append( ("mullberry", mullberry!, 1200) ) }
-		if (oak != nil){ report.append( ("oak", oak!, 1200) ) }
-		if (poplar != nil){ report.append( ("poplar", poplar!, 1200) ) }
-		if (privet != nil){ report.append( ("privet", privet!, 1200) ) }
-		if (sycamore != nil){ report.append( ("sycamore", sycamore!, 1200) ) }
-		if (walnut != nil){ report.append( ("walnut", walnut!, 1200) ) }
-		if (willow != nil){ report.append( ("willow", willow!, 1200) ) }
+	func report() -> [(String, Int, Int, Rating)]{
+		var report:[(String, Int, Int, Rating)] = []
+		if (ash != nil){ report.append( ("ash", ash!, Pollen.shared.veryHeavyFor(key: "ash"), Pollen.shared.ratingFor(key: "ash", value: ash!) ) ) }
+		if (birch != nil){ report.append( ("birch", birch!, Pollen.shared.veryHeavyFor(key: "bir"), Pollen.shared.ratingFor(key: "bir", value: birch! ) ) ) }
+		if (cedar != nil){ report.append( ("cedar", cedar!, Pollen.shared.veryHeavyFor(key: "cdr"), Pollen.shared.ratingFor(key: "cdr", value: cedar! ) ) ) }
+		if (cottonWood != nil){ report.append( ("cotton wood", cottonWood!, Pollen.shared.veryHeavyFor(key: "cot"), Pollen.shared.ratingFor(key: "cot", value: cottonWood! ) ) ) }
+		if (elm != nil){ report.append( ("elm", elm!, Pollen.shared.veryHeavyFor(key: "elm"), Pollen.shared.ratingFor(key: "elm", value: elm! ) ) ) }
+		if (grass != nil){ report.append( ("grass", grass!, Pollen.shared.veryHeavyFor(key: "grs"), Pollen.shared.ratingFor(key: "grs", value: grass! ) ) ) }
+		if (hackberry != nil){ report.append( ("hackberry", hackberry!, Pollen.shared.veryHeavyFor(key: "hck"), Pollen.shared.ratingFor(key: "hck", value: hackberry! ) ) ) }
+		if (molds != nil){ report.append( ("molds", molds!, Pollen.shared.veryHeavyFor(key: "mld"), Pollen.shared.ratingFor(key: "mld", value: molds! ) ) ) }
+		if (mullberry != nil){ report.append( ("mullberry", mullberry!, Pollen.shared.veryHeavyFor(key: "mul"), Pollen.shared.ratingFor(key: "mul", value: mullberry! ) ) ) }
+		if (oak != nil){ report.append( ("oak", oak!, Pollen.shared.veryHeavyFor(key: "oak"), Pollen.shared.ratingFor(key: "oak", value: oak! ) ) ) }
+		if (poplar != nil){ report.append( ("poplar", poplar!, Pollen.shared.veryHeavyFor(key: "pop"), Pollen.shared.ratingFor(key: "pop", value: poplar! ) ) ) }
+		if (privet != nil){ report.append( ("privet", privet!, Pollen.shared.veryHeavyFor(key: "prv"), Pollen.shared.ratingFor(key: "prv", value: privet! ) ) ) }
+		if (sycamore != nil){ report.append( ("sycamore", sycamore!, Pollen.shared.veryHeavyFor(key: "syc"), Pollen.shared.ratingFor(key: "syc", value: sycamore! ) ) ) }
+		if (walnut != nil){ report.append( ("walnut", walnut!, Pollen.shared.veryHeavyFor(key: "wal"), Pollen.shared.ratingFor(key: "wal", value: walnut! ) ) ) }
+		if (willow != nil){ report.append( ("willow", willow!, Pollen.shared.veryHeavyFor(key: "wil"), Pollen.shared.ratingFor(key: "wil", value: willow! ) ) ) }
 		return report
 	}
 	

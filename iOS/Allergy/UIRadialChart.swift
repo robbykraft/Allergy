@@ -16,9 +16,13 @@ class UIRadialChart: UIView {
 				if let s = d.summary{
 					label.text = s
 				}
+				for label in self.radialLabels{
+					label.removeFromSuperview()
+				}
+				self.radialLabels = []
 			}
 			self.layoutSubviews()
-			redrawLayers()
+			redrawGraph()
 		}
 	}
 	
@@ -26,6 +30,8 @@ class UIRadialChart: UIView {
 	let label = UILabel()
 	let arcLayer = CALayer()
 	let circleLayer = CALayer()
+	
+	var radialLabels:[UILabel] = []
 	
 	let todaysAllergyLabel = UILabel()
 	
@@ -73,23 +79,56 @@ class UIRadialChart: UIView {
 
 	}
 	
-	func redrawLayers(){
+	func redrawGraph(){
 		let radius:CGFloat = self.frame.width*0.33
 		let center:CGPoint = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5)
 		arcLayer.sublayers = []
 		if let sample = data{
-			let count = sample.count()
-			for i in 0..<count{
-				let thisRadius:CGFloat = CGFloat(arc4random()%35)
+//			let count = sample.count()
+//			for i in 0..<count{
+			let report = sample.report()
+			let count = report.count
+			for i in 0..<report.count {
+				let (name, value, max, rating) = report[i]
+				let thisRadius:CGFloat = CGFloat(value) / CGFloat(max) * 50.0
 				let layer = CAShapeLayer()
 				let angle = CGFloat(Double.pi * 2 / Double(count))
-				let circle = UIBezierPath.init(arcCenter: center, radius: radius+thisRadius, startAngle: angle*CGFloat(i), endAngle: angle*CGFloat(i+1), clockwise: true)
+				let circle = UIBezierPath.init(arcCenter: center, radius: (radius+20)+thisRadius, startAngle: angle*CGFloat(i), endAngle: angle*CGFloat(i+1), clockwise: true)
 				circle.addLine(to: center)
 				layer.path = circle.cgPath
-				layer.fillColor = UIColor.init(white: 0.6 + CGFloat(Double(arc4random()%100)/100.0*0.3), alpha: 1.0).cgColor
+				
+				switch rating {
+				case .none:
+					layer.fillColor = Style.shared.softBlue.cgColor
+				case .low:
+					layer.fillColor = Style.shared.softBlue.cgColor
+				case .medium:
+					layer.fillColor = Style.shared.green.cgColor
+				case .heavy:
+					layer.fillColor = Style.shared.orange.cgColor
+				case .veryHeavy:
+					layer.fillColor = Style.shared.red.cgColor
+				}
+
 				arcLayer.addSublayer(layer)
+				
+				let radialLabel = UILabel()
+				radialLabel.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+				radialLabel.text = name
+				radialLabel.font = UIFont(name: SYSTEM_FONT_B, size: Style.shared.P12)
+				radialLabel.textColor = UIColor.white
+				radialLabel.sizeToFit()
+				radialLabel.center = center
+				var transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi*0.5) + angle*CGFloat(Float(i)+0.5))
+				transform = transform.translatedBy(x: 0, y: -((radius+20)+thisRadius-12))
+				radialLabel.transform = transform
+				self.addSubview(radialLabel)
 			}
 		}
+		self.bringSubview(toFront: label)
+		self.bringSubview(toFront: todaysAllergyLabel)
+		circleLayer.removeFromSuperlayer()
+		self.layer.insertSublayer(circleLayer, below: label.layer)
 	}
 	
 

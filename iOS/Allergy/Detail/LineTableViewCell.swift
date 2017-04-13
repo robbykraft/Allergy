@@ -13,6 +13,8 @@ class LineTableViewCell: UITableViewCell {
 	let barLayer = CALayer()
 	let barDescription = UILabel()
 	
+	var rating:Rating = .none
+	
 	var data:(Int, Int)?{  // value, maxValue
 		didSet{
 			self.layoutSubviews()
@@ -58,9 +60,21 @@ class LineTableViewCell: UITableViewCell {
 			bz.move(to: CGPoint.init(x: strokeWeight*0.5+pad, y: self.frame.size.height*0.5))
 			bz.addLine(to: CGPoint.init(x: strokeWeight*0.5+pad + thisLineWidth, y: self.frame.size.height*0.5))
 			shape.path = bz.cgPath
-			shape.strokeColor = Style.shared.blue.cgColor
 			shape.lineWidth = strokeWeight
 			shape.lineCap = kCALineCapRound
+			switch self.rating {
+			case .none:
+				shape.strokeColor = Style.shared.blue.cgColor
+			case .low:
+				shape.strokeColor = Style.shared.blue.cgColor
+			case .medium:
+				shape.strokeColor = Style.shared.green.cgColor
+			case .heavy:
+				shape.strokeColor = Style.shared.orange.cgColor
+			case .veryHeavy:
+				shape.strokeColor = Style.shared.red.cgColor
+			}
+			
 			barLayer.addSublayer(shape)
 		}
 	}

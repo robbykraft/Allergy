@@ -19,7 +19,7 @@ class DetailTableViewController: UITableViewController {
 		}
 	}
 	
-	var report:[(String, Int, Int)]? // name, value, maxValue
+	var report:[(String, Int, Int, Rating)]? // name, value, maxValue
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +70,10 @@ class DetailTableViewController: UITableViewController {
 		cell.selectionStyle = .none
 		if let r = report{
 			if r.count > indexPath.row{
-				let (name, value, max) = r[indexPath.row]
+				let (name, value, max, rating) = r[indexPath.row]
 				cell.textLabel?.text = name
 				cell.data = (value, max)
+				cell.rating = rating
 			}
 		}
 		
