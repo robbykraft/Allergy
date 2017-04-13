@@ -48,7 +48,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		barChart = UIBarChartView.init(frame: CGRect.init(x: 0, y: barChartTop, width: self.view.frame.size.width, height: 200))
 		self.view.addSubview(barChart)
 		
-		radialButton.frame = radialChart.frame
+		radialButton.frame = CGRect.init(x: 0, y: 0, width: radialChart.frame.size.width*0.66, height: radialChart.frame.size.height*0.66)
+		radialButton.center = radialChart.center
 		radialButton.backgroundColor = UIColor.clear
 		radialButton.addTarget(self, action: #selector(radialButtonPressed), for: .touchUpInside)
 		self.view.addSubview(radialButton)

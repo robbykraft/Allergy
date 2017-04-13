@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		95EB7F0AC46E570C9FEB9B25 /* Pods_Allergy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA0587CD355AA5902667918 /* Pods_Allergy.framework */; };
+		D51A197E1EA00FEE00B608ED /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51A197D1EA00FEE00B608ED /* UserNotifications.framework */; };
 		D51C22A71E92E5EB00887F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51C22A61E92E5EB00887F42 /* AppDelegate.swift */; };
 		D51C22A91E92E5EB00887F42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51C22A81E92E5EB00887F42 /* ViewController.swift */; };
 		D51C22AC1E92E5EB00887F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51C22AA1E92E5EB00887F42 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		1DB2757E7D4527FDFF046321 /* Pods-Allergy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Allergy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Allergy/Pods-Allergy.release.xcconfig"; sourceTree = "<group>"; };
 		635357FFE350EB25D1891FA9 /* Pods-Allergy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Allergy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Allergy/Pods-Allergy.debug.xcconfig"; sourceTree = "<group>"; };
 		CAA0587CD355AA5902667918 /* Pods_Allergy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Allergy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D51A197D1EA00FEE00B608ED /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D51C22A31E92E5EB00887F42 /* Allergy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Allergy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51C22A61E92E5EB00887F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D51C22A81E92E5EB00887F42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D51A197E1EA00FEE00B608ED /* UserNotifications.framework in Frameworks */,
 				95EB7F0AC46E570C9FEB9B25 /* Pods_Allergy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,6 +80,7 @@
 		C924E1767FCBB2F991288F37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D51A197D1EA00FEE00B608ED /* UserNotifications.framework */,
 				CAA0587CD355AA5902667918 /* Pods_Allergy.framework */,
 			);
 			name = Frameworks;
