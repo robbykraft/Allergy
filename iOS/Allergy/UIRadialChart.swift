@@ -98,6 +98,10 @@ class UIRadialChart: UIView {
 		let radius:CGFloat = self.frame.width*0.33
 		let center:CGPoint = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5)
 		arcLayer.sublayers = []
+		var barHeight:CGFloat = 50.0
+		if(IS_IPAD){
+			barHeight = 150.0;
+		}
 		if let sample = data{
 //			let count = sample.count()
 //			for i in 0..<count{
@@ -105,10 +109,10 @@ class UIRadialChart: UIView {
 			let count = report.count
 			for i in 0..<report.count {
 				let (name, value, max, rating) = report[i]
-				let thisRadius:CGFloat = CGFloat(value) / CGFloat(max) * 50.0
+				let thisRadius:CGFloat = CGFloat(value) / CGFloat(max) * barHeight
 				let layer = CAShapeLayer()
 				let angle = CGFloat(Double.pi * 2 / Double(count))
-				let circle = UIBezierPath.init(arcCenter: center, radius: (radius+20)+thisRadius, startAngle: angle*CGFloat(i), endAngle: angle*CGFloat(i+1), clockwise: true)
+				let circle = UIBezierPath.init(arcCenter: center, radius: (radius+(barHeight*0.4))+thisRadius, startAngle: angle*CGFloat(i), endAngle: angle*CGFloat(i+1), clockwise: true)
 				circle.addLine(to: center)
 				layer.path = circle.cgPath
 				
@@ -116,13 +120,13 @@ class UIRadialChart: UIView {
 				case .none:
 					layer.fillColor = Style.shared.softBlue.cgColor
 				case .low:
-					layer.fillColor = Style.shared.softBlue.cgColor
-				case .medium:
 					layer.fillColor = Style.shared.green.cgColor
-				case .heavy:
+				case .medium:
 					layer.fillColor = Style.shared.orange.cgColor
-				case .veryHeavy:
+				case .heavy:
 					layer.fillColor = Style.shared.red.cgColor
+				case .veryHeavy:
+					layer.fillColor = Style.shared.purple.cgColor
 				}
 
 				arcLayer.addSublayer(layer)
@@ -135,7 +139,7 @@ class UIRadialChart: UIView {
 				radialLabel.sizeToFit()
 				radialLabel.center = center
 				var transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi*0.5) + angle*CGFloat(Float(i)+0.5))
-				transform = transform.translatedBy(x: 0, y: -((radius+20)+thisRadius-12))
+				transform = transform.translatedBy(x: 0, y: -((radius+(barHeight*0.4))+thisRadius-(barHeight*0.2)))
 				radialLabel.transform = transform
 				self.radialLabels.append(radialLabel)
 				self.addSubview(radialLabel)

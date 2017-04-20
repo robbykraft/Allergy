@@ -24,6 +24,13 @@ class Preferences: UITableViewController, SliderCellDelegate {
         // Do any additional setup after loading the view.
     }
 	
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		if(IS_IPAD){
+			return 60
+		}
+		return 44
+	}
+	
 	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 2
 	}
@@ -105,7 +112,7 @@ class Preferences: UITableViewController, SliderCellDelegate {
 		case 0:
 			switch indexPath.row {
 			case 0:
-				self.navigationController?.pushViewController(MyAllergies(), animated: true)
+				self.navigationController?.pushViewController(MyAllergies.init(style: .grouped), animated: true)
 			default:
 				break
 			}

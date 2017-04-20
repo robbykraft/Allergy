@@ -20,6 +20,8 @@ class DetailTableViewController: UITableViewController {
 	}
 	
 	var report:[(String, Int, Int, Rating)]? // name, value, maxValue
+	
+	let gridLayer = CAShapeLayer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +29,27 @@ class DetailTableViewController: UITableViewController {
 		self.title = "TODAY"
 		let newBackButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneButtonPressed))
 		self.navigationItem.rightBarButtonItem = newBackButton
-
 		self.tableView.separatorStyle = .none
+
+		
+		self.view.layer.insertSublayer(gridLayer, at: 0)
+		let lineFrame:CGFloat = self.view.frame.size.width * 0.5
+		let strokeWeight:CGFloat = 38
+		let pad:CGFloat = 10
+		gridLayer.sublayers = []
+		for i in 0..<3{
+			let shape = CAShapeLayer()
+			let bz = UIBezierPath()
+			bz.move(to: CGPoint.init(x: 1+strokeWeight+pad + lineFrame/4.0*CGFloat(i), y: 0.0))
+			bz.addLine(to: CGPoint.init(x: 1+strokeWeight+pad + lineFrame/4.0*CGFloat(i), y: self.view.frame.size.height))
+			shape.lineWidth = 4
+			let lineDashPatterns: [NSNumber]  = [0, 8]
+			shape.lineDashPattern = lineDashPatterns
+			shape.lineCap = kCALineCapRound
+			shape.strokeColor = Style.shared.whiteSmoke.cgColor
+			shape.path = bz.cgPath
+			gridLayer.addSublayer(shape)
+		}
 		
 		// Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -47,10 +68,17 @@ class DetailTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
+	
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		if(IS_IPAD){
+			return 68
+		}
+		return 44
+	}
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-		if self.data != nil{
+		if self.report != nil{
 			return 1
 		}
 		return 0
@@ -58,8 +86,8 @@ class DetailTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-		if let s = self.data{
-			return s.count() + 2
+		if let r = self.report{
+			return r.count
 		}
 		return 0
     }

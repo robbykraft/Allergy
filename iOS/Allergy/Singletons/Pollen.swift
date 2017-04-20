@@ -63,6 +63,17 @@ class Pollen {
 		}
 		return 1
 	}
+	
+	func nameFor(key:String) -> String{
+		let entry = self.types[key] as? [String:Any]
+		if let e = entry{
+			let name = e["name"] as? String
+			if let n = name{
+				return n
+			}
+		}
+		return key
+	}
 
 	
 	func ratingFor(key:String, value:Int) -> Rating{
@@ -89,6 +100,7 @@ class Pollen {
 			let keys:[String] = Array(self.types.keys)
 			for key in keys{
 				if(allergies[key] == nil){
+					print("adding an allergy entry for " + key)
 					allergies[key] = true
 				}
 			}

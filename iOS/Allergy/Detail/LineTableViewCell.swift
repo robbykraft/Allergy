@@ -37,21 +37,26 @@ class LineTableViewCell: UITableViewCell {
     }
 	
 	func initUI(){
-//		self.layer.addSublayer(barLayer)
 		self.layer.insertSublayer(barLayer, at: 0)
 		redrawLayers()
 		barDescription.font = UIFont(name: SYSTEM_FONT_B, size: Style.shared.P18)
 		barDescription.textColor = UIColor.white
 		self.addSubview(barDescription)
+		self.backgroundColor = UIColor.clear
 	}
 	
 	func redrawLayers(){
+		let lineFrame:CGFloat = self.frame.size.width * 0.5
+		var strokeWeight:CGFloat = 38
+		var pad:CGFloat = 10
+		if(IS_IPAD){
+			strokeWeight = 60
+			pad = 20
+		}
+
 		barLayer.sublayers = []
 		
 		if let (value, max) = data{
-			let lineFrame:CGFloat = self.frame.size.width * 0.5
-			let strokeWeight:CGFloat = 38
-			let pad:CGFloat = 10
 			
 			let thisLineWidth = lineFrame * CGFloat(Float(value) / Float(max))
 			
@@ -66,13 +71,13 @@ class LineTableViewCell: UITableViewCell {
 			case .none:
 				shape.strokeColor = Style.shared.blue.cgColor
 			case .low:
-				shape.strokeColor = Style.shared.blue.cgColor
-			case .medium:
 				shape.strokeColor = Style.shared.green.cgColor
-			case .heavy:
+			case .medium:
 				shape.strokeColor = Style.shared.orange.cgColor
-			case .veryHeavy:
+			case .heavy:
 				shape.strokeColor = Style.shared.red.cgColor
+			case .veryHeavy:
+				shape.strokeColor = Style.shared.purple.cgColor
 			}
 			
 			barLayer.addSublayer(shape)
@@ -80,8 +85,12 @@ class LineTableViewCell: UITableViewCell {
 	}
 	
 	override func layoutSubviews() {
-		let pad:CGFloat = 10
-		let strokeWeight:CGFloat = 38
+		var pad:CGFloat = 10
+		var strokeWeight:CGFloat = 38
+		if(IS_IPAD){
+			strokeWeight = 60
+			pad = 20
+		}
 		
 		super.layoutSubviews()
 		redrawLayers()

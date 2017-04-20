@@ -40,9 +40,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		let circle = UIBezierPath.init(arcCenter: CGPoint.init(x: self.view.center.x, y: barChartTop - radius), radius: radius, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
 		layer.path = circle.cgPath
 		layer.fillColor = Style.shared.blue.cgColor
+//		layer.fillColor = Style.shared.lightBlue.cgColor
+//		layer.lineWidth = 10
+//		layer.strokeColor = Style.shared.blue.cgColor
 		self.view.layer.addSublayer(layer)
 		
-		radialChart = UIRadialChart.init(frame: CGRect.init(x: 0, y: 22, width: self.view.frame.size.width, height: self.view.frame.size.width))
+		if(IS_IPAD){
+			radialChart = UIRadialChart.init(frame: CGRect.init(x: self.view.frame.size.width*0.125, y: 22+self.view.frame.size.width*0.125, width: self.view.frame.size.width*0.75, height: self.view.frame.size.width * 0.75))
+		} else{
+			radialChart = UIRadialChart.init(frame: CGRect.init(x: 0, y: 22, width: self.view.frame.size.width, height: self.view.frame.size.width))
+		}
 		self.view.addSubview(radialChart)
 		
 		barChart = UIBarChartView.init(frame: CGRect.init(x: 0, y: barChartTop, width: self.view.frame.size.width, height: 200))
@@ -69,9 +76,18 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 			// build bar chart again
 			var barValues:[Float] = []
 			for sample in self.samples{
-				if let mold = sample.molds{
-					barValues.append( Float(mold) / 3000.0 )
+//				let keys = Array(sample.values.keys)
+				let reports = sample.report()
+				var dailyHigh:Float = 0.0
+				for i in 0..<reports.count{
+					let (_, value, max, _) = reports[i]
+					let thisValue = Float(value) / Float(max)
+					if thisValue > dailyHigh{
+						dailyHigh = thisValue
+					}
 				}
+				if dailyHigh > 1.0 {dailyHigh = 1.0}
+				barValues.append( dailyHigh )
 			}
 			self.barChart.values = barValues
 			// set bar labels
