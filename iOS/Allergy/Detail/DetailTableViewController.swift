@@ -14,7 +14,12 @@ class DetailTableViewController: UITableViewController {
 		didSet{
 			self.tableView.reloadData()
 			if let d = data{
-				self.report = d.report()
+				self.report = d.report().sorted(by: { (a1, a2) -> Bool in
+					return a1.0 < a2.0
+				})
+				if let date = d.date{
+					self.title = Style.shared.dayStringForDate(date).uppercased()
+				}
 			}
 		}
 	}
@@ -26,7 +31,6 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.title = "TODAY"
 		let newBackButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneButtonPressed))
 		self.navigationItem.rightBarButtonItem = newBackButton
 		self.tableView.separatorStyle = .none
@@ -57,7 +61,7 @@ class DetailTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-	
+
 	func doneButtonPressed(){
 		self.dismiss(animated: true, completion: nil)
 	}

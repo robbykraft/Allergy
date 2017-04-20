@@ -11,8 +11,6 @@ import Firebase
 
 class ViewController: UIViewController, UINavigationControllerDelegate{
 	
-	let weekdayStrings = ["S", "M", "T", "W", "T", "F", "S"]
-	
 	var radialChart = UIRadialChart()
 	var barChart = UIBarChartView()
 	
@@ -94,8 +92,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 			var dateStrings:[String] = []
 			for sample in self.samples{
 				if let date = sample.date{
-					let weekday = NSCalendar.current.component(.weekday, from: date)
-					dateStrings.append(self.weekdayStrings[weekday])
+					let dateFormatter = DateFormatter()
+					dateFormatter.dateFormat = "EEEEE"
+					dateStrings.append(dateFormatter.string(from: date).localizedUppercase)
 				}
 			}
 			self.barChart.labels = dateStrings

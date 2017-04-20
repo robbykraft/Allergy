@@ -92,6 +92,23 @@ class Style {
 		//	                                              NSKernAttributeName : CGFloat(-4.0)]
 		
 	}
+	
+	func dayStringForDate(_ date:Date) -> String{
+		if(NSCalendar.current.isDateInToday(date)){
+			return "today"
+		}
+		if(NSCalendar.current.isDateInYesterday(date)){
+			return "yesterday"
+		}
+		if(abs(date.timeIntervalSinceNow) < 432000){
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateFormat = "EEEE"
+			return dateFormatter.string(from: date)
+		}
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "MMM d, yyyy"
+		return dateFormatter.string(from: date)
+	}
 }
 
 func statusBarHeight() -> CGFloat {

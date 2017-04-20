@@ -43,6 +43,12 @@ class Pollen {
 		}
 	}
 	
+	var sortAllergiesBy:Int = 0{  // on my allergies page, sort by season / group
+		didSet{
+			let defaults = UserDefaults.standard
+			defaults.setValue(self.sortAllergiesBy, forKey: "sortAllergiesBy")
+		}
+	}
 	func boot(completionHandler: ((_ success:Bool) -> ())? ){
 		self.getPollenTypes { (success) in
 			if(success){
@@ -129,6 +135,12 @@ class Pollen {
 				]
 			self.notifications = pnPrefs
 		}
+		if let mySort = defaults.object(forKey:"sortAllergiesBy") as? Int {
+			self.sortAllergiesBy = mySort
+		} else{
+			self.sortAllergiesBy = 0
+		}
+
 		
 	}
 	

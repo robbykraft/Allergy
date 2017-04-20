@@ -13,6 +13,9 @@ class UIRadialChart: UIView {
 	var data:Sample?{
 		didSet{
 			self.refreshViewData()
+//			if data != nil{
+//				circleLayer.isHidden = false
+//			}
 		}
 	}
 	
@@ -23,23 +26,21 @@ class UIRadialChart: UIView {
 	
 	var radialLabels:[UILabel] = []
 	
-	let todaysAllergyLabel = UILabel()
+	let dayLabel = UILabel()
 	
 	
 	func refreshViewData() {
 		if let d = data{
 			let summary = d.generateSummary()
 			switch summary {
-			case .veryHeavy:
-				label.text = "very heavy"
-			case .heavy:
-				label.text = "heavy"
-			case .medium:
-				label.text = "medium"
-			case .low:
-				label.text = "light"
-			case .none:
-				label.text = "no pollen"
+			case .veryHeavy: label.text = "very heavy"
+			case .heavy: label.text = "heavy"
+			case .medium: label.text = "medium"
+			case .low: label.text = "light"
+			case .none: label.text = "no pollen"
+			}
+			if let date = d.date{
+				dayLabel.text = Style.shared.dayStringForDate(date)
 			}
 		}
 		for label in self.radialLabels{
@@ -48,7 +49,6 @@ class UIRadialChart: UIView {
 		self.radialLabels = []
 		self.layoutSubviews()
 		redrawGraph()
-		
 	}
 	
 	override init(frame: CGRect) {
@@ -73,16 +73,16 @@ class UIRadialChart: UIView {
 		let circle = UIBezierPath.init(arcCenter: CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5), radius: radius, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
 		layer.path = circle.cgPath
 		layer.fillColor = Style.shared.whiteSmoke.cgColor
+//		circleLayer.isHidden = true
 		circleLayer.addSublayer(layer)
 		
 		label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P48)
 		label.textColor = UIColor.black
 		self.addSubview(label)
 		
-		todaysAllergyLabel.font = UIFont.init(name: SYSTEM_FONT, size:Style.shared.P15)
-		todaysAllergyLabel.textColor = UIColor.gray
-		todaysAllergyLabel.text = "today"
-		self.addSubview(todaysAllergyLabel)
+		dayLabel.font = UIFont.init(name: SYSTEM_FONT, size:Style.shared.P15)
+		dayLabel.textColor = UIColor.gray
+		self.addSubview(dayLabel)
 	}
 	
 	override func layoutSubviews() {
@@ -90,8 +90,8 @@ class UIRadialChart: UIView {
 		label.sizeToFit()
 		label.center = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5)
 		
-		todaysAllergyLabel.sizeToFit()
-		todaysAllergyLabel.center = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5 - self.frame.width*0.33 + 50)
+		dayLabel.sizeToFit()
+		dayLabel.center = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5 - self.frame.width*0.33 + 50)
 	}
 	
 	func redrawGraph(){
@@ -105,14 +105,24 @@ class UIRadialChart: UIView {
 		if let sample = data{
 //			let count = sample.count()
 //			for i in 0..<count{
-			let report = sample.report()
+			var report = sample.report().sorted(by: { (a1, a2) -> Bool in
+				return ( Float(a1.1)/Float(a1.2) ) < ( Float(a2.1)/Float(a2.2) )
+			})
+			
+			var i = 0
+			while i < report.count {
+				let removed = report.remove(at: i)
+				report.insert(removed, at: 0)
+				i += 2
+			}
+			
 			let count = report.count
 			for i in 0..<report.count {
 				let (name, value, max, rating) = report[i]
 				let thisRadius:CGFloat = CGFloat(value) / CGFloat(max) * barHeight
 				let layer = CAShapeLayer()
 				let angle = CGFloat(Double.pi * 2 / Double(count))
-				let circle = UIBezierPath.init(arcCenter: center, radius: (radius+(barHeight*0.4))+thisRadius, startAngle: angle*CGFloat(i), endAngle: angle*CGFloat(i+1), clockwise: true)
+				let circle = UIBezierPath.init(arcCenter: center, radius: (radius+(barHeight*0.4))+thisRadius, startAngle: angle*CGFloat(i)-CGFloat(Double.pi*0.5), endAngle: angle*CGFloat(i+1)-CGFloat(Double.pi*0.5), clockwise: true)
 				circle.addLine(to: center)
 				layer.path = circle.cgPath
 				
@@ -138,15 +148,15 @@ class UIRadialChart: UIView {
 				radialLabel.textColor = UIColor.white
 				radialLabel.sizeToFit()
 				radialLabel.center = center
-				var transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi*0.5) + angle*CGFloat(Float(i)+0.5))
-				transform = transform.translatedBy(x: 0, y: -((radius+(barHeight*0.4))+thisRadius-(barHeight*0.2)))
+				var transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi*0.5) + angle*CGFloat(Float(i)+0.5)-CGFloat(Double.pi*0.5))
+				transform = transform.translatedBy(x: 0, y: -((radius+(barHeight*0.4))+thisRadius-(barHeight*0.25)))
 				radialLabel.transform = transform
 				self.radialLabels.append(radialLabel)
 				self.addSubview(radialLabel)
 			}
 		}
 		self.bringSubview(toFront: label)
-		self.bringSubview(toFront: todaysAllergyLabel)
+		self.bringSubview(toFront: dayLabel)
 		circleLayer.removeFromSuperlayer()
 		self.layer.insertSublayer(circleLayer, below: label.layer)
 	}
