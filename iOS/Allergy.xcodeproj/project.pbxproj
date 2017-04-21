@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		95EB7F0AC46E570C9FEB9B25 /* Pods_Allergy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA0587CD355AA5902667918 /* Pods_Allergy.framework */; };
-		D51A197E1EA00FEE00B608ED /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51A197D1EA00FEE00B608ED /* UserNotifications.framework */; };
 		D51C22A71E92E5EB00887F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51C22A61E92E5EB00887F42 /* AppDelegate.swift */; };
 		D51C22A91E92E5EB00887F42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51C22A81E92E5EB00887F42 /* ViewController.swift */; };
 		D51C22AC1E92E5EB00887F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51C22AA1E92E5EB00887F42 /* Main.storyboard */; };
@@ -62,6 +61,7 @@
 		D5A9973D1E9BEC8600F37F52 /* Fire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fire.swift; sourceTree = "<group>"; };
 		D5D014D91E9E71DA00BF7374 /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		D5D014DA1E9E71DA00BF7374 /* LineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineTableViewCell.swift; sourceTree = "<group>"; };
+		D5F33C681EAA5D3000DB01C3 /* Allergy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Allergy.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D51A197E1EA00FEE00B608ED /* UserNotifications.framework in Frameworks */,
 				95EB7F0AC46E570C9FEB9B25 /* Pods_Allergy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +106,7 @@
 		D51C22A51E92E5EB00887F42 /* Allergy */ = {
 			isa = PBXGroup;
 			children = (
+				D5F33C681EAA5D3000DB01C3 /* Allergy.entitlements */,
 				D51C22A61E92E5EB00887F42 /* AppDelegate.swift */,
 				D5A9973B1E9BEC8600F37F52 /* Singletons */,
 				D532B3241E9C861E0090FC7A /* Model */,
@@ -220,6 +220,11 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = LZQR3392T8;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -451,6 +456,7 @@
 			baseConfigurationReference = 635357FFE350EB25D1891FA9 /* Pods-Allergy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Allergy/Allergy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LZQR3392T8;
 				INFOPLIST_FILE = Allergy/Info.plist;
@@ -470,6 +476,7 @@
 			baseConfigurationReference = 1DB2757E7D4527FDFF046321 /* Pods-Allergy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Allergy/Allergy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LZQR3392T8;
 				INFOPLIST_FILE = Allergy/Info.plist;
