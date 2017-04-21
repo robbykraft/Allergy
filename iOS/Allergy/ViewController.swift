@@ -25,6 +25,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		self.navigationController?.delegate = self
 		
 		radialChart.refreshViewData()
+		self.refreshBarChart()
 	}
 	
 	override func viewDidLoad() {
@@ -56,7 +57,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		radialButton.frame = CGRect.init(x: 0, y: 0, width: radialChart.frame.size.width*0.66, height: radialChart.frame.size.height*0.66)
 		radialButton.center = radialChart.center
 		radialButton.backgroundColor = UIColor.clear
-		radialButton.addTarget(self, action: #selector(radialButtonPressed), for: .touchUpInside)
+		radialButton.addTarget(self, action: #selector(radialTouchCancel), for: .touchCancel)
+		radialButton.addTarget(self, action: #selector(radialTouchCancel), for: .touchDragExit)
+		radialButton.addTarget(self, action: #selector(radialTouchDown), for: .touchDragEnter)
+		radialButton.addTarget(self, action: #selector(radialTouchDown), for: .touchDown)
+		radialButton.addTarget(self, action: #selector(radialTouchUpInside), for: .touchUpInside)
 		self.view.addSubview(radialButton)
 		
 		preferencesButton.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
@@ -65,42 +70,50 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		preferencesButton.addTarget(self, action: #selector(preferencesButtonPressed), for: .touchUpInside)
 		self.view.addSubview(preferencesButton)
 		
+		self.downloadAndRefresh()
+	}
+	
+	func downloadAndRefresh(){
 		Pollen.shared.loadRecentData(numberOfDays: 1) { (sample) in
 			self.radialChart.data = sample
+			self.refreshBarChart()
 		}
-		
 		Pollen.shared.loadRecentData(numberOfDays: 5) { (sample) in
 			self.samples.append(sample)
-			// build bar chart again
-			var barValues:[Float] = []
-			for sample in self.samples{
-//				let keys = Array(sample.values.keys)
-				let reports = sample.report()
-				var dailyHigh:Float = 0.0
-				for i in 0..<reports.count{
-					let (_, value, max, _) = reports[i]
-					let thisValue = Float(value) / Float(max)
-					if thisValue > dailyHigh{
-						dailyHigh = thisValue
-					}
-				}
-				if dailyHigh > 1.0 {dailyHigh = 1.0}
-				barValues.append( dailyHigh )
-			}
-			self.barChart.values = barValues
-			// set bar labels
-			var dateStrings:[String] = []
-			for sample in self.samples{
-				if let date = sample.date{
-					let dateFormatter = DateFormatter()
-					dateFormatter.dateFormat = "EEEEE"
-					dateStrings.append(dateFormatter.string(from: date).localizedUppercase)
-				}
-			}
-			self.barChart.labels = dateStrings
+			self.refreshBarChart()
 		}
-		
 	}
+	
+	func refreshBarChart(){
+		// build bar chart again
+		var barValues:[Float] = []
+		for sample in self.samples{
+//				let keys = Array(sample.values.keys)
+			let reports = sample.report()
+			var dailyHigh:Float = 0.0
+			for i in 0..<reports.count{
+				let (_, value, max, _) = reports[i]
+				let thisValue = Float(value) / Float(max)
+				if thisValue > dailyHigh{
+					dailyHigh = thisValue
+				}
+			}
+			if dailyHigh > 1.0 {dailyHigh = 1.0}
+			barValues.append( dailyHigh )
+		}
+		self.barChart.values = barValues
+		// set bar labels
+		var dateStrings:[String] = []
+		for sample in self.samples{
+			if let date = sample.date{
+				let dateFormatter = DateFormatter()
+				dateFormatter.dateFormat = "EEEEE"
+				dateStrings.append(dateFormatter.string(from: date).localizedUppercase)
+			}
+		}
+		self.barChart.labels = dateStrings
+	}
+	
 	
 	func preferencesButtonPressed(){
 		let nav = UINavigationController()
@@ -108,7 +121,16 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		self.present(nav, animated: true, completion: nil)
 	}
 	
-	func radialButtonPressed(){
+	func radialTouchDown(){
+		radialChart.pressed = true
+	}
+	
+	func radialTouchCancel(){
+		radialChart.pressed = false
+	}
+
+	func radialTouchUpInside(){
+		radialChart.pressed = false
 		if samples.count > 0{
 			let nav = UINavigationController()
 			let vc = DetailTableViewController()

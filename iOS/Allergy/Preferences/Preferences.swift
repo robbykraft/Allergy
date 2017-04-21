@@ -24,6 +24,11 @@ class Preferences: UITableViewController, SliderCellDelegate {
         // Do any additional setup after loading the view.
     }
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		self.tableView.reloadData()
+	}
+	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		if(IS_IPAD){
 			return 60
@@ -48,11 +53,11 @@ class Preferences: UITableViewController, SliderCellDelegate {
 		case 0:
 			return 1
 		case 1:
-			if let pn = Pollen.shared.notifications["enabled"] as? Bool{
-				if pn == true{
-					return 3
-				}
-			}
+//			if let pn = Pollen.shared.notifications["enabled"] as? Bool{
+//				if pn == true{
+//					return 3
+//				}
+//			}
 			return 1
 		default:
 			return 0
@@ -75,15 +80,25 @@ class Preferences: UITableViewController, SliderCellDelegate {
 			switch indexPath.row {
 			case 0:
 				cell.textLabel?.text = "Notifications"
-				if let pn = Pollen.shared.notifications["enabled"] as? Bool{
-					if pn == true{
-						cell.detailTextLabel?.textColor = Style.shared.blue
-						cell.detailTextLabel?.text = "Enabled"
-					} else if pn == false{
-						cell.detailTextLabel?.textColor = UIColor.lightGray
-						cell.detailTextLabel?.text = "Disabled"
-					}
+
+				switch UIApplication.shared.isRegisteredForRemoteNotifications {
+				case true:
+					cell.detailTextLabel?.textColor = Style.shared.blue
+					cell.detailTextLabel?.text = "Enabled"
+				case false:
+					cell.detailTextLabel?.textColor = UIColor.lightGray
+					cell.detailTextLabel?.text = "Disabled"
 				}
+
+//				if let pn = Pollen.shared.notifications["enabled"] as? Bool{
+//					if pn == true{
+//						cell.detailTextLabel?.textColor = Style.shared.blue
+//						cell.detailTextLabel?.text = "Enabled"
+//					} else if pn == false{
+//						cell.detailTextLabel?.textColor = UIColor.lightGray
+//						cell.detailTextLabel?.text = "Disabled"
+//					}
+//				}
 			case 1:
 				cell.selectionStyle = .none
 				var pn:[String:Any] = Pollen.shared.notifications
@@ -119,12 +134,23 @@ class Preferences: UITableViewController, SliderCellDelegate {
 		case 1:
 			switch indexPath.row {
 			case 0:
-				var pn:[String:Any] = Pollen.shared.notifications
-				if let enabled = pn["enabled"] as? Bool{
-					pn["enabled"] = !enabled
-				}
-				Pollen.shared.notifications = pn
-				self.tableView.reloadSections(IndexSet(integer: 1), with: .none)
+				self.tableView.deselectRow(at: indexPath, animated: true)
+				let alert = UIAlertController.init(title: "Push Notifications", message: "Push Notifications are enabled in Settings", preferredStyle: .alert)
+				let action1 = UIAlertAction.init(title: "Close", style: .cancel, handler: { (action) in
+					
+				})
+				let action2 = UIAlertAction.init(title: "Open Settings", style: .destructive, handler: { (action) in
+					UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+				})
+				alert.addAction(action1)
+				alert.addAction(action2)
+				self.present(alert, animated: true, completion: nil)
+//				var pn:[String:Any] = Pollen.shared.notifications
+//				if let enabled = pn["enabled"] as? Bool{
+//					pn["enabled"] = !enabled
+//				}
+//				Pollen.shared.notifications = pn
+//				self.tableView.reloadSections(IndexSet(integer: 1), with: .none)
 				break
 			default:
 				break
