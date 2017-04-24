@@ -25,6 +25,7 @@ class Preferences: UITableViewController, SliderCellDelegate {
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
+		print("Preferences viewWillAppear")
 		super.viewWillAppear(animated)
 		self.tableView.reloadData()
 	}

@@ -39,16 +39,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 	}
 	
+	func refreshAppIfNeeded(){
+		let vc = UIApplication.topViewController()
+		if let viewController = vc as? Preferences {
+			viewController.tableView.reloadData()
+		}
+	}
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
 		UIApplication.shared.statusBarStyle = .lightContent
 
-		
-		
-		
-		
 		
 		// Register for remote notifications. This shows a permission dialog on first run, to
 		// show the dialog at a more appropriate time move this registration accordingly.
@@ -104,11 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// [END add_token_refresh_observer]
 		
 		
-
-		
-		
-		
-		
 		
 //		FIRApp.configure()
 		
@@ -129,8 +126,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //			launchApp(true)
 //		}
 
-		
-		
 		return true
 	}
 	
@@ -146,6 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationWillEnterForeground(_ application: UIApplication) {
 		// Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+		self.refreshAppIfNeeded()
 	}
 
 //	func applicationDidBecomeActive(_ application: UIApplication) {
@@ -310,4 +306,22 @@ extension AppDelegate : FIRMessagingDelegate {
 }
 // [END ios_10_data_message_handling]
 
+
+
+extension UIApplication {
+	class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+		if let nav = base as? UINavigationController {
+			return topViewController(base: nav.visibleViewController)
+		}
+		if let tab = base as? UITabBarController {
+			if let selected = tab.selectedViewController {
+				return topViewController(base: selected)
+			}
+		}
+		if let presented = base?.presentedViewController {
+			return topViewController(base: presented)
+		}
+		return base
+	}
+}
 
