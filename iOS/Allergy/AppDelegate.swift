@@ -95,8 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		
 		
-		
-		
 		// [START add_token_refresh_observer]
 		// Add observer for InstanceID token refresh callback.
 		NotificationCenter.default.addObserver(self,
@@ -105,18 +103,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		                                       object: nil)
 		// [END add_token_refresh_observer]
 		
-		
-		
-//		FIRApp.configure()
-		
 		_ = Fire.shared
 		_ = Pollen.shared
 		_ = Style.shared
 		
 		
 		Pollen.shared.boot { (success) in
+			self.quickLaunch()
 		}
-		self.quickLaunch()
 		
 //		if (FIRAuth.auth()?.currentUser) != nil {
 //			// User is signed in.

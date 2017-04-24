@@ -10,7 +10,6 @@
 		95EB7F0AC46E570C9FEB9B25 /* Pods_Allergy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA0587CD355AA5902667918 /* Pods_Allergy.framework */; };
 		D51C22A71E92E5EB00887F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51C22A61E92E5EB00887F42 /* AppDelegate.swift */; };
 		D51C22A91E92E5EB00887F42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51C22A81E92E5EB00887F42 /* ViewController.swift */; };
-		D51C22AC1E92E5EB00887F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51C22AA1E92E5EB00887F42 /* Main.storyboard */; };
 		D51C22AE1E92E5EB00887F42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51C22AD1E92E5EB00887F42 /* Assets.xcassets */; };
 		D51C22B11E92E5EB00887F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D51C22AF1E92E5EB00887F42 /* LaunchScreen.storyboard */; };
 		D51C22B91E92E5FB00887F42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D51C22B81E92E5FB00887F42 /* GoogleService-Info.plist */; };
@@ -40,7 +39,6 @@
 		D51C22A31E92E5EB00887F42 /* Allergy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Allergy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51C22A61E92E5EB00887F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D51C22A81E92E5EB00887F42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D51C22AB1E92E5EB00887F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D51C22AD1E92E5EB00887F42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D51C22B01E92E5EB00887F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D51C22B21E92E5EB00887F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				D5D014D81E9E71DA00BF7374 /* Detail */,
 				D5A997351E9BE71D00F37F52 /* MasterNavigationController.swift */,
 				D54B973E1E9DD83B0064EAED /* Preferences */,
-				D51C22AA1E92E5EB00887F42 /* Main.storyboard */,
 				D51C22AD1E92E5EB00887F42 /* Assets.xcassets */,
 				D51C22AF1E92E5EB00887F42 /* LaunchScreen.storyboard */,
 				D51C22B81E92E5FB00887F42 /* GoogleService-Info.plist */,
@@ -254,7 +251,6 @@
 				D51C22B11E92E5EB00887F42 /* LaunchScreen.storyboard in Resources */,
 				D51C22B91E92E5FB00887F42 /* GoogleService-Info.plist in Resources */,
 				D51C22AE1E92E5EB00887F42 /* Assets.xcassets in Resources */,
-				D51C22AC1E92E5EB00887F42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,14 +333,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D51C22AA1E92E5EB00887F42 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D51C22AB1E92E5EB00887F42 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D51C22AF1E92E5EB00887F42 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
