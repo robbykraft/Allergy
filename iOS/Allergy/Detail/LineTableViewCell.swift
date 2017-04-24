@@ -58,7 +58,10 @@ class LineTableViewCell: UITableViewCell {
 		
 		if let (value, max) = data{
 			
-			let thisLineWidth = lineFrame * CGFloat(Float(value) / Float(max))
+			var valuePCT = CGFloat(Float(value) / Float(max))
+			if(valuePCT > 1.0) { valuePCT = 1.0 }
+			
+			let thisLineWidth = lineFrame * valuePCT
 			
 			let shape = CAShapeLayer()
 			let bz = UIBezierPath()
@@ -96,7 +99,11 @@ class LineTableViewCell: UITableViewCell {
 		redrawLayers()
 		
 		if let (value, max) = data{
-			let thisLineWidth = strokeWeight*0.5+pad + CGFloat(self.frame.size.width * 0.5) * CGFloat(Float(value) / Float(max))
+			
+			var valuePCT = CGFloat(Float(value) / Float(max))
+			if(valuePCT > 1.0) { valuePCT = 1.0 }
+
+			let thisLineWidth = strokeWeight*0.5+pad + CGFloat(self.frame.size.width * 0.5) * valuePCT
 
 			barDescription.isHidden = false
 			barDescription.text = String(describing: value)

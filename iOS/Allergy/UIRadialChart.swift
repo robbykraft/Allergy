@@ -141,8 +141,10 @@ class UIRadialChart: UIView {
 			
 			let count = report.count
 			for i in 0..<report.count {
-				let (name, value, max, rating) = report[i]
-				let thisRadius:CGFloat = CGFloat(value) / CGFloat(max) * barHeight
+				let (_, value, max, rating) = report[i]
+				var valuePCT = CGFloat(value) / CGFloat(max)
+				if(valuePCT > 0.75){ valuePCT = 0.75 }
+				let thisRadius:CGFloat = valuePCT * barHeight
 				let layer = CAShapeLayer()
 				let angle = CGFloat(Double.pi * 2 / Double(count))
 				let circle = UIBezierPath.init(arcCenter: center, radius: (radius+(barHeight*0.4))+thisRadius, startAngle: angle*CGFloat(i)-CGFloat(Double.pi*0.5), endAngle: angle*CGFloat(i+1)-CGFloat(Double.pi*0.5), clockwise: true)
@@ -194,7 +196,9 @@ class UIRadialChart: UIView {
 
 			for i in 0..<report.count {
 				let (name, value, max, _) = report[i]
-				let thisRadius:CGFloat = CGFloat(value) / CGFloat(max) * barHeight
+				var valuePCT = CGFloat(value) / CGFloat(max)
+				if(valuePCT > 0.75){ valuePCT = 0.75 }
+				let thisRadius:CGFloat = valuePCT * barHeight
 				let angle = CGFloat(Double.pi * 2 / Double(count))
 				let textAngle = angle*CGFloat(Float(i)+0.5) - CGFloat(Double.pi*0.5)
 				let textRadius = (radius+(barHeight*0.4))+thisRadius-(barHeight*0.22)
