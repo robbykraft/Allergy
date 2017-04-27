@@ -37,12 +37,11 @@ class Preferences: UITableViewController, SliderCellDelegate {
 	}
 	
 	override func numberOfSections(in tableView: UITableView) -> Int {
-		return 2
+		return 3
 	}
 	
 	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		switch section{
-		case 0: return nil
 		case 1: return "Push Notifications"
 		default: return nil
 		}
@@ -58,6 +57,8 @@ class Preferences: UITableViewController, SliderCellDelegate {
 //					return 3
 //				}
 //			}
+			return 1
+		case 2:
 			return 1
 		default:
 			return 0
@@ -117,6 +118,8 @@ class Preferences: UITableViewController, SliderCellDelegate {
 				return sliderCell
 			default: break
 			}
+		case 2:
+			cell.textLabel?.text = "About"
 		default: break
 		}
 		return cell
@@ -155,6 +158,8 @@ class Preferences: UITableViewController, SliderCellDelegate {
 			default:
 				break
 			}
+		case 2:
+			self.navigationController?.pushViewController(AboutPage.init(style: .grouped), animated: true)
 		default:
 			break
 		}

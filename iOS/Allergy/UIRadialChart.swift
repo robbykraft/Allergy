@@ -60,6 +60,12 @@ class UIRadialChart: UIView {
 			case .low: label.text = "light"
 			case .none: label.text = "no pollen"
 			}
+			// text size
+			switch summary {
+			case .veryHeavy: label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P40)
+			case .none: label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P40)
+			default: label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P48)
+			}
 			if let date = d.date{
 				dayLabel.text = Style.shared.dayStringForDate(date)
 			}

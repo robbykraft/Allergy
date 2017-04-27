@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewController: UIViewController, UINavigationControllerDelegate{
+class ViewController: UIViewController, UINavigationControllerDelegate, BarChartDelegate{
 	
 	var radialChart = UIRadialChart()
 	var barChart = UIBarChartView()
@@ -52,6 +52,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		self.view.addSubview(radialChart)
 		
 		barChart = UIBarChartView.init(frame: CGRect.init(x: 0, y: barChartTop, width: self.view.frame.size.width, height: 200))
+		barChart.delegate = self
 		self.view.addSubview(barChart)
 		
 		radialButton.frame = CGRect.init(x: 0, y: 0, width: radialChart.frame.size.width*0.66, height: radialChart.frame.size.height*0.66)
@@ -114,6 +115,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		self.barChart.labels = dateStrings
 	}
 	
+	func barChartDidUpdateSelection(sender: UIBarChartView) {
+		let selected = sender.selected
+		if selected < self.samples.count{
+			self.radialChart.data = self.samples[selected]
+		}
+	}
+		
+	
 	
 	func preferencesButtonPressed(){
 		let nav = UINavigationController()
@@ -134,7 +143,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate{
 		if samples.count > 0{
 			let nav = UINavigationController()
 			let vc = DetailTableViewController()
-			vc.data = samples[0]
+			vc.data = self.radialChart.data
 			nav.viewControllers = [vc]
 			nav.modalPresentationStyle = .custom
 			nav.modalTransitionStyle = .crossDissolve

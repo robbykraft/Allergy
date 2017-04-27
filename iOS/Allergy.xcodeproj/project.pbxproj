@@ -22,6 +22,7 @@
 		D54B97401E9DD83B0064EAED /* MyAllergies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B973F1E9DD83B0064EAED /* MyAllergies.swift */; };
 		D54B97421E9DD8610064EAED /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B97411E9DD8610064EAED /* Preferences.swift */; };
 		D55D06941E9C2161000AB9D9 /* UIBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */; };
+		D59BB17C1EB28910004D5849 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59BB17B1EB28910004D5849 /* AboutPage.swift */; };
 		D5A997331E9BE71200F37F52 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997311E9BE71200F37F52 /* LoginViewController.swift */; };
 		D5A997341E9BE71200F37F52 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997321E9BE71200F37F52 /* ProfileViewController.swift */; };
 		D5A997361E9BE71D00F37F52 /* MasterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997351E9BE71D00F37F52 /* MasterNavigationController.swift */; };
@@ -52,6 +53,7 @@
 		D54B973F1E9DD83B0064EAED /* MyAllergies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAllergies.swift; sourceTree = "<group>"; };
 		D54B97411E9DD8610064EAED /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarChartView.swift; sourceTree = "<group>"; };
+		D59BB17B1EB28910004D5849 /* AboutPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
 		D5A997311E9BE71200F37F52 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D5A997321E9BE71200F37F52 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D5A997351E9BE71D00F37F52 /* MasterNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterNavigationController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				D54B97411E9DD8610064EAED /* Preferences.swift */,
+				D59BB17B1EB28910004D5849 /* AboutPage.swift */,
 				D54B973F1E9DD83B0064EAED /* MyAllergies.swift */,
 				D5300EB81E9EC46900874C18 /* SliderTableViewCell.swift */,
 			);
@@ -309,6 +312,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D59BB17C1EB28910004D5849 /* AboutPage.swift in Sources */,
 				D532B3261E9C86360090FC7A /* Sample.swift in Sources */,
 				D5A9973E1E9BEC8600F37F52 /* Cache.swift in Sources */,
 				D54B97421E9DD8610064EAED /* Preferences.swift in Sources */,

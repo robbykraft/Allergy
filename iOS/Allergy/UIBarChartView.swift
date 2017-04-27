@@ -8,7 +8,15 @@
 
 import UIKit
 
+
+protocol BarChartDelegate: class {
+	func barChartDidUpdateSelection(sender: UIBarChartView)
+}
+
 class UIBarChartView: UIView {
+	
+	weak var delegate:BarChartDelegate? // for calling completed button press function
+	var selected = 0
 	
 	var values:[Float] = []{
 		didSet{
@@ -32,6 +40,9 @@ class UIBarChartView: UIView {
 	
 	let barLayer:CALayer = CALayer()
 	let watermarkLayer:CALayer = CALayer()
+	
+	var touchAreas:[CGRect] = []
+	
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -87,6 +98,8 @@ class UIBarChartView: UIView {
 		barLayer.sublayers = []
 		watermarkLayer.sublayers = []
 		
+		touchAreas = []
+		
 		let lineWidth:CGFloat = 15
 		let spacer:CGFloat = 2
 		let padLabel:CGFloat = 20
@@ -107,6 +120,7 @@ class UIBarChartView: UIView {
 			layer.lineWidth = lineWidth
 			layer.lineCap = kCALineCapRound
 			watermarkLayer.addSublayer(layer)
+			touchAreas.append(CGRect(x: xPos-lineWidth*0.5, y:padH-lineWidth*0.5, width: lineWidth, height: self.frame.size.height-padH*2 - padLabel+lineWidth*0.5*2))
 		}
 
 		// data layer
@@ -117,15 +131,48 @@ class UIBarChartView: UIView {
 			bz.move(to: CGPoint.init(x: xPos, y: padH + barHeight))
 			bz.addLine(to: CGPoint.init(x: xPos, y: padH + barHeight - barHeight*CGFloat(values[i])))
 			layer.path = bz.cgPath
-			layer.strokeColor = Style.shared.blue.cgColor
-			if(i != 0){
-				layer.strokeColor = Style.shared.lightBlue.cgColor
+			layer.strokeColor = Style.shared.lightBlue.cgColor
+			if i == selected{
+				layer.strokeColor = Style.shared.blue.cgColor
 			}
 			layer.lineWidth = lineWidth
 			layer.lineCap = kCALineCapRound
 			barLayer.addSublayer(layer)
 		}
 		
+	}
+	
+	func didTouchIn(number:Int){
+		if selected != number{
+			selected = number
+			if delegate != nil{
+				delegate?.barChartDidUpdateSelection(sender: self)
+			}
+			redrawLayer()
+		}
+	}
+	
+	
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		if let touch = touches.first{
+			for i in 0 ..< touchAreas.count{
+				let area = touchAreas[i]
+				if(area.contains(touch.location(in: self))){
+					self.didTouchIn(number: 14 - i)
+				}
+			}
+		}
+	}
+	
+	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		if let touch = touches.first{
+			for i in 0 ..< touchAreas.count{
+				let area = touchAreas[i]
+				if(area.contains(touch.location(in: self))){
+					self.didTouchIn(number: 14 - i)
+				}
+			}
+		}
 	}
 	
     // Only override draw() if you perform custom drawing.
