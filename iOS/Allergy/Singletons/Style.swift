@@ -28,6 +28,14 @@ let IS_IPHONE:Bool = UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom
 
 class Style {
 	
+	// for the allergy color scheme
+	var colorNoPollen = UIColor()
+	var colorLow = UIColor()
+	var colorMedium = UIColor()
+	var colorHeavy = UIColor()
+	var colorVeryHeavy = UIColor()
+
+	
 	let gray = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
 	let darkGray = UIColor(red:0.22, green:0.22, blue:0.22, alpha:1.00)
 	let whiteSmoke = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
@@ -65,6 +73,11 @@ class Style {
 			P15 = 26
 			P12 = 24
 		}
+		colorNoPollen = self.green
+		colorLow = UIColor(red: 0.0, green: 200/255.0, blue: 50/255.0, alpha: 1.0)
+		colorMedium = UIColor(red: 1.0, green: 156/255.0, blue: 14/255.0, alpha: 1.0)
+		colorHeavy = UIColor(red: 1.0, green: 97/255.0, blue: 28/255.0, alpha: 1.0)
+		colorVeryHeavy = self.red
 		
 		styleUIAppearance()
 	}
@@ -89,7 +102,7 @@ class Style {
 //		navigationBarAppearace.barStyle = UIBarStyle.blackTranslucent
 		navigationBarAppearace.titleTextAttributes = [NSFontAttributeName : UIFont(name: SYSTEM_FONT_B, size: self.P24)!,
 		                                              NSForegroundColorAttributeName : UIColor.black]
-		//	                                              NSKernAttributeName : CGFloat(-4.0)]
+//		NSKernAttributeName : CGFloat(-4.0)]
 		
 	}
 	

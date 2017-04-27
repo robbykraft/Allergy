@@ -71,16 +71,11 @@ class LineTableViewCell: UITableViewCell {
 			shape.lineWidth = strokeWeight
 			shape.lineCap = kCALineCapRound
 			switch self.rating {
-			case .none:
-				shape.strokeColor = Style.shared.blue.cgColor
-			case .low:
-				shape.strokeColor = Style.shared.green.cgColor
-			case .medium:
-				shape.strokeColor = Style.shared.orange.cgColor
-			case .heavy:
-				shape.strokeColor = Style.shared.red.cgColor
-			case .veryHeavy:
-				shape.strokeColor = Style.shared.purple.cgColor
+			case .none:      shape.strokeColor = Style.shared.colorNoPollen.cgColor
+			case .low:       shape.strokeColor = Style.shared.colorLow.cgColor
+			case .medium:    shape.strokeColor = Style.shared.colorMedium.cgColor
+			case .heavy:     shape.strokeColor = Style.shared.colorHeavy.cgColor
+			case .veryHeavy: shape.strokeColor = Style.shared.colorVeryHeavy.cgColor
 			}
 			
 			barLayer.addSublayer(shape)

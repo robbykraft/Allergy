@@ -158,16 +158,11 @@ class UIRadialChart: UIView {
 				layer.path = circle.cgPath
 				
 				switch rating {
-				case .none:
-					layer.fillColor = Style.shared.softBlue.cgColor
-				case .low:
-					layer.fillColor = Style.shared.green.cgColor
-				case .medium:
-					layer.fillColor = Style.shared.orange.cgColor
-				case .heavy:
-					layer.fillColor = Style.shared.red.cgColor
-				case .veryHeavy:
-					layer.fillColor = Style.shared.purple.cgColor
+				case .none:      layer.fillColor = Style.shared.colorNoPollen.cgColor
+				case .low:       layer.fillColor = Style.shared.colorLow.cgColor
+				case .medium:    layer.fillColor = Style.shared.colorMedium.cgColor
+				case .heavy:     layer.fillColor = Style.shared.colorHeavy.cgColor
+				case .veryHeavy: layer.fillColor = Style.shared.colorVeryHeavy.cgColor
 				}
 
 				arcLayer.addSublayer(layer)
