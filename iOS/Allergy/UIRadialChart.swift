@@ -135,7 +135,7 @@ class UIRadialChart: UIView {
 //			let count = sample.count()
 //			for i in 0..<count{
 			var report = sample.report().sorted(by: { (a1, a2) -> Bool in
-				return ( Float(a1.1)/Float(a1.2) ) < ( Float(a2.1)/Float(a2.2) )
+				return ( Float(a1.2) ) < ( Float(a2.2) )
 			})
 			
 			var i = 0
@@ -147,8 +147,8 @@ class UIRadialChart: UIView {
 			
 			let count = report.count
 			for i in 0..<report.count {
-				let (_, value, max, rating) = report[i]
-				var valuePCT = CGFloat(value) / CGFloat(max)
+				let (_, _, logValue, rating) = report[i]
+				var valuePCT:CGFloat = CGFloat(logValue)
 				if(valuePCT > 0.75){ valuePCT = 0.75 }
 				let thisRadius:CGFloat = valuePCT * barHeight
 				let layer = CAShapeLayer()
@@ -196,8 +196,8 @@ class UIRadialChart: UIView {
 			context.scaleBy (x: 1, y: -1)
 
 			for i in 0..<report.count {
-				let (name, value, max, _) = report[i]
-				var valuePCT = CGFloat(value) / CGFloat(max)
+				let (name, _, logValue, _) = report[i]
+				var valuePCT = CGFloat(logValue)
 				if(valuePCT > 0.75){ valuePCT = 0.75 }
 				let thisRadius:CGFloat = valuePCT * barHeight
 				let angle = CGFloat(Double.pi * 2 / Double(count))

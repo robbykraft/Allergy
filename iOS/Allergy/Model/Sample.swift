@@ -109,11 +109,11 @@ class Sample: NSObject {
 	
 	// my report gives back the sample, filtered through your curated list of allergy types
 	//
-	func report() -> [(String, Int, Int, Rating)]{
-		var report:[(String, Int, Int, Rating)] = []
+	func report() -> [(String, Int, Float, Rating)]{  // name, raw value, 0.0-1.0 log value, Rating(low,high)
+		var report:[(String, Int, Float, Rating)] = []
 		for key in Array(self.values.keys) {
 			if Pollen.shared.myAllergies[key]!{
-				report.append( (Pollen.shared.nameFor(key: key), self.values[key]!, Pollen.shared.veryHeavyFor(key: key), Pollen.shared.ratingFor(key: key, value: self.values[key]! ) ) )
+				report.append( (Pollen.shared.nameFor(key: key), self.values[key]!, Pollen.shared.logValueFor(key: key, value: self.values[key]!), Pollen.shared.ratingFor(key: key, value: self.values[key]! ) ) )
 			}
 		}
 		return report

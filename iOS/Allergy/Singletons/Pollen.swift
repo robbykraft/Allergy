@@ -61,12 +61,18 @@ class Pollen {
 		}
 	}
 	
-	func veryHeavyFor(key:String) -> Int{
+	func getValueFor(key:String, atRating:Rating) -> Int{
 		let pollenType:[String:Any] = self.types[key] as! [String : Any]
 		if let levels = pollenType["levels"] as? [String:Any]{
-			return levels["vh"] as! Int
+			switch atRating{
+			case .none: return levels["vh"] as! Int
+			case .low: return levels["vh"] as! Int
+			case .medium: return levels["vh"] as! Int
+			case .heavy: return levels["vh"] as! Int
+			case .veryHeavy: return levels["vh"] as! Int
+			}
 		}
-		return 1
+		return 0
 	}
 	
 	func nameFor(key:String) -> String{
@@ -80,6 +86,17 @@ class Pollen {
 		return key
 	}
 
+	func logValueFor(key:String, value:Int) -> Float{
+		let pollenType:[String:Any] = self.types[key] as! [String : Any]
+		if let levels = pollenType["levels"] as? [String:Any]{
+			let veryHeavy:Int = levels["vh"] as! Int
+			var result = Float(value) / Float(veryHeavy)
+			if(result > 1.0){ result = 1.0 }
+			result = pow(result, 0.4)
+			return result
+		}
+		return 0.0
+	}
 	
 	func ratingFor(key:String, value:Int) -> Rating{
 		let pollenType:[String:Any] = self.types[key] as! [String : Any]

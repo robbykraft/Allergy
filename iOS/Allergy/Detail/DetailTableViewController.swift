@@ -24,7 +24,7 @@ class DetailTableViewController: UITableViewController {
 		}
 	}
 	
-	var report:[(String, Int, Int, Rating)]? // name, value, maxValue
+	var report:[(String, Int, Float, Rating)]? // name, value, 0.0-1.0 value, Rating
 	
 	let gridLayer = CAShapeLayer()
 
@@ -102,9 +102,9 @@ class DetailTableViewController: UITableViewController {
 		cell.selectionStyle = .none
 		if let r = report{
 			if r.count > indexPath.row{
-				let (name, value, max, rating) = r[indexPath.row]
+				let (name, value, logValue, rating) = r[indexPath.row]
 				cell.textLabel?.text = name
-				cell.data = (value, max)
+				cell.data = (value, logValue)
 				cell.rating = rating
 			}
 		}

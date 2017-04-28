@@ -15,7 +15,7 @@ class LineTableViewCell: UITableViewCell {
 	
 	var rating:Rating = .none
 	
-	var data:(Int, Int)?{  // value, maxValue
+	var data:(Int, Float)?{  // raw value, logValue
 		didSet{
 			self.layoutSubviews()
 		}
@@ -56,12 +56,9 @@ class LineTableViewCell: UITableViewCell {
 
 		barLayer.sublayers = []
 		
-		if let (value, max) = data{
-			
-			var valuePCT = CGFloat(Float(value) / Float(max))
-			if(valuePCT > 1.0) { valuePCT = 1.0 }
-			
-			let thisLineWidth = lineFrame * valuePCT
+		if let (_, logValue) = data{
+						
+			let thisLineWidth:CGFloat = lineFrame * CGFloat(logValue)
 			
 			let shape = CAShapeLayer()
 			let bz = UIBezierPath()
@@ -93,12 +90,9 @@ class LineTableViewCell: UITableViewCell {
 		super.layoutSubviews()
 		redrawLayers()
 		
-		if let (value, max) = data{
-			
-			var valuePCT = CGFloat(Float(value) / Float(max))
-			if(valuePCT > 1.0) { valuePCT = 1.0 }
+		if let (value, logValue) = data{
 
-			let thisLineWidth = strokeWeight*0.5+pad + CGFloat(self.frame.size.width * 0.5) * valuePCT
+			let thisLineWidth = strokeWeight*0.5+pad + CGFloat(self.frame.size.width * 0.5) * CGFloat(logValue)
 
 			barDescription.isHidden = false
 			barDescription.text = String(describing: value)

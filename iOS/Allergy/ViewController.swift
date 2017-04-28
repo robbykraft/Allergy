@@ -93,13 +93,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, BarChart
 			let reports = sample.report()
 			var dailyHigh:Float = 0.0
 			for i in 0..<reports.count{
-				let (_, value, max, _) = reports[i]
-				let thisValue = Float(value) / Float(max)
-				if thisValue > dailyHigh{
-					dailyHigh = thisValue
+				let (_, _, logValue, _) = reports[i]
+				if logValue > dailyHigh{
+					dailyHigh = logValue
 				}
 			}
-			if dailyHigh > 1.0 {dailyHigh = 1.0}
 			barValues.append( dailyHigh )
 		}
 		self.barChart.values = barValues
