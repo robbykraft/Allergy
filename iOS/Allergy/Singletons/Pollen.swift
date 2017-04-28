@@ -16,7 +16,6 @@ enum Rating {
 	case veryHeavy
 }
 
-
 class Pollen {
 
 	static let shared = Pollen()
@@ -191,7 +190,7 @@ class Pollen {
 			let dateString = makeDateCode(daysPast: tries)
 			tries += 1
 			Fire.shared.getData("collections/" + dateString) { (data) in
-				if(data == nil && tries < 30){
+				if(data == nil && tries < 40){
 					print("no entry for " + dateString + ". trying again")
 					queryDatabase()
 				} else if let d = data as? [String:Any]{
