@@ -65,10 +65,10 @@ class Pollen {
 		let pollenType:[String:Any] = self.types[key] as! [String : Any]
 		if let levels = pollenType["levels"] as? [String:Any]{
 			switch atRating{
-			case .none: return levels["vh"] as! Int
-			case .low: return levels["vh"] as! Int
-			case .medium: return levels["vh"] as! Int
-			case .heavy: return levels["vh"] as! Int
+			case .none: return 0
+			case .low: return levels["l"] as! Int
+			case .medium: return levels["m"] as! Int
+			case .heavy: return levels["h"] as! Int
 			case .veryHeavy: return levels["vh"] as! Int
 			}
 		}
@@ -92,7 +92,10 @@ class Pollen {
 			let veryHeavy:Int = levels["vh"] as! Int
 			var result = Float(value) / Float(veryHeavy)
 			if(result > 1.0){ result = 1.0 }
-			result = pow(result, 0.4)
+			result = pow(result, 0.1)
+			result = result - 0.5;
+			if(result < 0.0) {result = 0.0}
+			result *= 2
 			return result
 		}
 		return 0.0
@@ -160,6 +163,15 @@ class Pollen {
 		
 	}
 	
+	func stringForRating(_ rating:Rating) -> String{
+		switch rating {
+		case .veryHeavy: return "very heavy"
+		case .heavy: return "heavy"
+		case .medium: return "medium"
+		case .low: return "light"
+		case .none: return "no pollen"
+		}
+	}
 	
 	func getPollenTypes(completionHandler: ((_ success:Bool) -> ())? ){
 		Fire.shared.getData("types") { (data) in

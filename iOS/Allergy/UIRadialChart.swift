@@ -53,13 +53,7 @@ class UIRadialChart: UIView {
 	func refreshViewData() {
 		if let d = data{
 			let summary = d.generateSummary()
-			switch summary {
-			case .veryHeavy: label.text = "very heavy"
-			case .heavy: label.text = "heavy"
-			case .medium: label.text = "medium"
-			case .low: label.text = "light"
-			case .none: label.text = "no pollen"
-			}
+			label.text = Pollen.shared.stringForRating(summary)
 			// text size
 			switch summary {
 			case .veryHeavy: label.font = UIFont.init(name: SYSTEM_FONT_B, size: Style.shared.P40)
@@ -127,9 +121,10 @@ class UIRadialChart: UIView {
 		let radius:CGFloat = self.frame.width*0.33
 		let center:CGPoint = CGPoint.init(x: self.frame.size.width*0.5, y: self.frame.size.height*0.5)
 		arcLayer.sublayers = []
-		var barHeight:CGFloat = 50.0
+
+		var barHeight:CGFloat = 40.0 + (self.frame.size.width - 320.0) * 0.18
 		if(IS_IPAD){
-			barHeight = 150.0;
+			barHeight = 110.0;
 		}
 		if let sample = data{
 //			let count = sample.count()
@@ -167,18 +162,6 @@ class UIRadialChart: UIView {
 
 				arcLayer.addSublayer(layer)
 				
-//				let radialLabel = UILabel()
-//				radialLabel.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//				radialLabel.text = name
-//				radialLabel.font = UIFont(name: SYSTEM_FONT_B, size: Style.shared.P12)
-//				radialLabel.textColor = UIColor.white
-//				radialLabel.sizeToFit()
-//				radialLabel.center = center
-//				var transform = CGAffineTransform.init(rotationAngle: CGFloat(Double.pi*0.5) + angle*CGFloat(Float(i)+0.5)-CGFloat(Double.pi*0.5))
-//				transform = transform.translatedBy(x: 0, y: -((radius+(barHeight*0.4))+thisRadius-(barHeight*0.25)))
-//				radialLabel.transform = transform
-//				self.radialLabels.append(radialLabel)
-//				self.addSubview(radialLabel)
 			}
 			
 			

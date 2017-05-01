@@ -47,7 +47,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, BarChart
 		if(IS_IPAD){
 			radialChart = UIRadialChart.init(frame: CGRect.init(x: self.view.frame.size.width*0.125, y: 22+self.view.frame.size.width*0.125, width: self.view.frame.size.width*0.75, height: self.view.frame.size.width * 0.75))
 		} else{
-			radialChart = UIRadialChart.init(frame: CGRect.init(x: 0, y: 22, width: self.view.frame.size.width, height: self.view.frame.size.width))
+			radialChart = UIRadialChart.init(frame: CGRect.init(x: 0, y: 22 + (self.view.frame.size.width - 320.0) * 0.25, width: self.view.frame.size.width, height: self.view.frame.size.width))
 		}
 		self.view.addSubview(radialChart)
 		

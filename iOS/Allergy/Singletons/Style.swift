@@ -40,7 +40,7 @@ class Style {
 	let darkGray = UIColor(red:0.22, green:0.22, blue:0.22, alpha:1.00)
 	let whiteSmoke = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
 	let athensGray = UIColor(red:0.94, green:0.94, blue:0.96, alpha:1.00)
-	let lightGray = UIColor(red:0.9, green:0.9, blue:0.9, alpha:1.00)
+	let lightGray = UIColor(red:0.9, green:0.9, blue:0.92, alpha:1.00)
 	let red = UIColor(red: 255/255.0, green: 59/255.0, blue: 48/255.0, alpha: 1.0)
 	let orange = UIColor(red: 255/255.0, green: 149/255.0, blue: 0, alpha: 1.0)
 	let blue = UIColor(red: 0, green: 122/255.0, blue: 1.0, alpha: 1.0)
