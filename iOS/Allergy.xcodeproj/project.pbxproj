@@ -22,6 +22,7 @@
 		D54B97401E9DD83B0064EAED /* MyAllergies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B973F1E9DD83B0064EAED /* MyAllergies.swift */; };
 		D54B97421E9DD8610064EAED /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54B97411E9DD8610064EAED /* Preferences.swift */; };
 		D55D06941E9C2161000AB9D9 /* UIBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */; };
+		D563489A1EBA89A00025A73C /* CenteredTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56348991EBA89A00025A73C /* CenteredTableViewCell.swift */; };
 		D59BB17C1EB28910004D5849 /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59BB17B1EB28910004D5849 /* AboutPage.swift */; };
 		D5A997331E9BE71200F37F52 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997311E9BE71200F37F52 /* LoginViewController.swift */; };
 		D5A997341E9BE71200F37F52 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A997321E9BE71200F37F52 /* ProfileViewController.swift */; };
@@ -53,6 +54,7 @@
 		D54B973F1E9DD83B0064EAED /* MyAllergies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAllergies.swift; sourceTree = "<group>"; };
 		D54B97411E9DD8610064EAED /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		D55D06931E9C2161000AB9D9 /* UIBarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBarChartView.swift; sourceTree = "<group>"; };
+		D56348991EBA89A00025A73C /* CenteredTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteredTableViewCell.swift; sourceTree = "<group>"; };
 		D59BB17B1EB28910004D5849 /* AboutPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
 		D5A997311E9BE71200F37F52 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D5A997321E9BE71200F37F52 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				D54B97411E9DD8610064EAED /* Preferences.swift */,
 				D59BB17B1EB28910004D5849 /* AboutPage.swift */,
+				D56348991EBA89A00025A73C /* CenteredTableViewCell.swift */,
 				D54B973F1E9DD83B0064EAED /* MyAllergies.swift */,
 				D5300EB81E9EC46900874C18 /* SliderTableViewCell.swift */,
 			);
@@ -319,6 +322,7 @@
 				D532B3281E9D4F700090FC7A /* UIRadialChart.swift in Sources */,
 				D5300EB91E9EC46900874C18 /* SliderTableViewCell.swift in Sources */,
 				D5D014DB1E9E71DA00BF7374 /* DetailTableViewController.swift in Sources */,
+				D563489A1EBA89A00025A73C /* CenteredTableViewCell.swift in Sources */,
 				D5A997341E9BE71200F37F52 /* ProfileViewController.swift in Sources */,
 				D54B973D1E9DD32E0064EAED /* Extensions.swift in Sources */,
 				D55D06941E9C2161000AB9D9 /* UIBarChartView.swift in Sources */,
@@ -447,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 635357FFE350EB25D1891FA9 /* Pods-Allergy.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Allergy/Allergy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -460,6 +465,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -467,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1DB2757E7D4527FDFF046321 /* Pods-Allergy.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Allergy/Allergy.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -480,6 +487,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

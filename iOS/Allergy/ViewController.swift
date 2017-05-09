@@ -34,15 +34,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, BarChart
 		
 		let barChartTop:CGFloat = self.view.frame.size.height - 200
 		let radius:CGFloat = self.view.frame.size.height * 1.25
+		let circleCenter = CGPoint.init(x: self.view.center.x, y: barChartTop - radius)
 		
 		let layer = CAShapeLayer()
-		let circle = UIBezierPath.init(arcCenter: CGPoint.init(x: self.view.center.x, y: barChartTop - radius), radius: radius, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
+		let circle = UIBezierPath.init(arcCenter: circleCenter, radius: radius, startAngle: 0, endAngle: CGFloat(Double.pi * 2), clockwise: true)
 		layer.path = circle.cgPath
 		layer.fillColor = Style.shared.blue.cgColor
 //		layer.fillColor = Style.shared.lightBlue.cgColor
 //		layer.lineWidth = 10
 //		layer.strokeColor = Style.shared.blue.cgColor
 		self.view.layer.addSublayer(layer)
+		
+		let image = self.makeCurvedAttributionText(size: CGSize.init(width: radius*2, height: radius*2), textRadius: radius-Style.shared.P18)
+		let radialLabelImageView:UIImageView = UIImageView(image: image)
+		radialLabelImageView.frame = CGRect(x: 0, y: 0, width: radius*2, height: radius*2)
+		self.view.addSubview(radialLabelImageView)
+		radialLabelImageView.center = circleCenter
 		
 		if(IS_IPAD){
 			radialChart = UIRadialChart.init(frame: CGRect.init(x: self.view.frame.size.width*0.125, y: 22+self.view.frame.size.width*0.125, width: self.view.frame.size.width*0.75, height: self.view.frame.size.width * 0.75))
@@ -71,7 +78,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, BarChart
 		preferencesButton.addTarget(self, action: #selector(preferencesButtonPressed), for: .touchUpInside)
 		self.view.addSubview(preferencesButton)
 		
-		self.downloadAndRefresh()
 	}
 	
 	func downloadAndRefresh(){
@@ -79,7 +85,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, BarChart
 			self.radialChart.data = sample
 			self.refreshBarChart()
 		}
-		Pollen.shared.loadRecentData(numberOfDays: 5) { (sample) in
+		self.samples = []
+		Pollen.shared.loadRecentData(numberOfDays: 15) { (sample) in
 			self.samples.append(sample)
 			self.refreshBarChart()
 		}
@@ -149,6 +156,25 @@ class ViewController: UIViewController, UINavigationControllerDelegate, BarChart
 		}
 	}
 	
+	func makeCurvedAttributionText(size:CGSize, textRadius:CGFloat) -> UIImage{
+		UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+//		UIGraphicsBeginImageContextWithOptions(size, true, 0.0)
+		let context = UIGraphicsGetCurrentContext()!
+		// *******************************************************************
+		// Scale & translate the context to have 0,0
+		// at the centre of the screen maths convention
+		// Obviously change your origin to suit...
+		// *******************************************************************
+		context.translateBy (x: size.width / 2, y: size.height / 2)
+		context.scaleBy (x: 1, y: -1)
+
+		Style.shared.centreArcPerpendicular(text: "provided by Allergy Free Austin", context: context, radius: textRadius, angle: -CGFloat.pi*0.5, colour: UIColor.white, font: UIFont(name: SYSTEM_FONT_B, size: Style.shared.P12)!, clockwise: false)
+//		Style.shared.centreArcPerpendicular(text: name, context: context, radius: textRadius, angle: -textAngle, colour: UIColor.white, font: UIFont(name: SYSTEM_FONT_B, size: Style.shared.P12)!, clockwise: true)
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		return image!
+	}
+
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.

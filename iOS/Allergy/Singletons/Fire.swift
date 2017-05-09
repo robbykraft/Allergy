@@ -70,19 +70,27 @@ class Fire {
 			if let connected = snapshot.value as? Bool , connected {
 //				print("INTERNET CONNECTION ESTABLISHED")
 				if(abs(self.startTime.timeIntervalSinceNow) > 2.0){
-					let banner = Banner(title: "Internet", subtitle: "Connection Established", image: UIImage(named: "Icon"), backgroundColor: UIColor(red:48.00/255.0, green:174.0/255.0, blue:51.5/255.0, alpha:1.000))
+					let banner = Banner(title: "Internet", subtitle: "Connection Established", image: UIImage(named: "Icon"), backgroundColor: Style.shared.green)
 					banner.dismissesOnTap = true
 					banner.show(duration: 2.0)
 				}
 			} else {
 //				print("INTERNET CONNECTION DOWN")
 				if(abs(self.startTime.timeIntervalSinceNow) > 2.0){
-					let banner = Banner(title: "Internet", subtitle: "Not Connected", image: UIImage(named: "Icon"), backgroundColor: UIColor(red:174.0/255.0, green:48.0/255.0, blue:51.5/255.0, alpha:1.000))
+					let banner = Banner(title: "Internet", subtitle: "Not Connected", image: UIImage(named: "Icon"), backgroundColor: Style.shared.red)
 					banner.dismissesOnTap = true
 					banner.show(duration: 2.0)
 				}
 			}
 		})
+		
+//		setup ref for the daily reading, if it changes tell the app to update itself:
+		let collectionsRef = FIRDatabase.database().reference(withPath: "/collections")
+		collectionsRef.observe(.value, with: { snapshot in
+			let appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
+			appDelegate.rootViewController.downloadAndRefresh()
+		})
+
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////

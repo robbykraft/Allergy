@@ -17,10 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 	let gcmMessageIDKey = "gcm.message_id"
 	
+	let rootViewController = ViewController()
+	
 	func quickLaunch(){
 		self.window = UIWindow()
 		self.window?.frame = UIScreen.main.bounds
-		self.window?.rootViewController = ViewController()
+		self.window?.rootViewController = rootViewController
 		self.window?.makeKeyAndVisible()
 	}
 	

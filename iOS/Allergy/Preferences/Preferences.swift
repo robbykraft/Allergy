@@ -11,12 +11,17 @@ import UIKit
 class Preferences: UITableViewController, SliderCellDelegate {
 	
 	let levelNames = ["NONE", "LOW", "MEDIUM", "HEAVY", "VERY HEAVY"]
+	
+	let logoImageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		self.title = "PREFERENCES"
 		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		
+		logoImageView.image = UIImage(named: "logo")
+		self.view.addSubview(logoImageView)
 
 		let newBackButton = UIBarButtonItem.init(title: "Done", style: .done, target: self, action: #selector(doneButtonPressed))
 		self.navigationItem.rightBarButtonItem = newBackButton
@@ -44,6 +49,24 @@ class Preferences: UITableViewController, SliderCellDelegate {
 		switch section{
 		case 1: return "Push Notifications"
 		default: return nil
+		}
+	}
+	
+	
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 2))
+		if(cell != nil){
+			let cellY = (cell?.frame.origin.y)! + (cell?.frame.size.height)!
+			let screenH = self.view.frame.size.height - 44 - 22
+			let padding:CGFloat = self.view.frame.size.width*0.1
+			var imageSize = screenH - cellY
+			if(imageSize > self.view.frame.size.width){
+				imageSize = self.view.frame.size.width
+			}
+			imageSize -= padding * 2
+			logoImageView.frame = CGRect(x:0, y:0, width: imageSize, height: imageSize)
+			logoImageView.center = CGPoint(x: 0.5 * self.view.frame.size.width, y: cellY + padding + imageSize*0.5)
 		}
 	}
 	
@@ -119,7 +142,7 @@ class Preferences: UITableViewController, SliderCellDelegate {
 			default: break
 			}
 		case 2:
-			cell.textLabel?.text = "About"
+			cell.textLabel?.text = "About Allergy Free Austin"
 		default: break
 		}
 		return cell
